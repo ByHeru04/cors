@@ -38,11 +38,6 @@ export default {
           reqHeaders.get("Access-Control-Allow-Headers") ||
           "Accept, Authorization, Cache-Control, Content-Type, DNT, If-Modified-Since, Keep-Alive, Origin, User-Agent, X-Requested-With, Token, x-access-token",
 	"Access-Control-Allow-Credentials", "true",
-	"reqheaders.delete": "content-security-policy",
-        "reqheaders.delete": "content-security-policy-report-only",
-        "reqheaders.delete": "clear-site-data",
-        "reqheaders.delete": "X-Powered-By",
-        "reqheaders.delete": "Server",
       }),
     };
 
