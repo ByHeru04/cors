@@ -130,7 +130,7 @@ async function getHelp(env: Env, url: URL) {
   return `<!DOCTYPE html>
   <html>
 	<head>
-	  <title>Streetwriters CORS Proxy</title>
+	  <title>CORS Proxy ByHeru🗿</title>
 	  <style>
 		body {
 		  font-family: "Courier New", Courier, monospace;
@@ -138,7 +138,7 @@ async function getHelp(env: Env, url: URL) {
 	  </style>
 	</head>
 	<body>
-	  <p>Welcome to Streetwriters CORS Proxy!</p>
+	  <p>CORS Proxy ByHeru🗿</p>
 	  <p>
 		You can use this proxy to bypass CORS in the browser. It is recommended
 		that you deploy your own instance both for privacy reasons and to reduce
