@@ -138,7 +138,6 @@ async function getHelp(env: Env, url: URL) {
 	  </style>
 	</head>
 	<body>
-	  <p>CORS Proxy ByHeru🗿</p>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -205,7 +204,7 @@ async function getHelp(env: Env, url: URL) {
     <div class="status-container">
         <h1>Status 200 OK</h1>
         <p>Your request was successfully processed.</p>
-        <a href="https://wa.me/6281234567890" target="_blank">Chat on WhatsApp</a>
+        <a href="https://t.me/+6283803735374" target="_blank">Telegram🗿</a>
     </div>
 </body>
 </html>
