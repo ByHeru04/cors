@@ -24,6 +24,13 @@ export default {
       status: 200,
       text: "OK",
       headers: new Headers({
+	"Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY",
+        "X-XSS-Protection": "1; mode=block",
+        "Referrer-Policy": "strict-origin-when-cross-origin",
+        "Feature-Policy": "accelerometer 'none'; geolocation 'none'; gyroscope 'none'",
+        "Content-Security-Policy": "default-src 'none'; img-src 'self'; script-src 'self'; style-src 'self'; object-src 'none'",
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods":
           "GET, POST, PUT, PATCH, DELETE, OPTIONS",
