@@ -24,11 +24,6 @@ export default {
       status: 200,
       text: "OK",
       headers: new Headers({
-	"Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
-        "X-Content-Type-Options": "nosniff",
-        "X-Frame-Options": "DENY",
-        "X-XSS-Protection": "1; mode=block",
-        "Referrer-Policy": "strict-origin-when-cross-origin",
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods":
           "GET, POST, PUT, PATCH, DELETE, OPTIONS",
@@ -36,11 +31,6 @@ export default {
           reqHeaders.get("Access-Control-Allow-Headers") ||
           "Accept, Authorization, Cache-Control, Content-Type, DNT, If-Modified-Since, Keep-Alive, Origin, User-Agent, X-Requested-With, Token, x-access-token",
 	"Access-Control-Allow-Credentials", "true",
-        "reqheaders.delete": "content-security-policy",
-        "reqheaders.delete": "content-security-policy-report-only",
-        "reqheaders.delete": "clear-site-data",
-        "reqheaders.delete": "X-Powered-By",
-        "reqheaders.delete": "Server",
       }),
     };
 
