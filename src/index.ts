@@ -151,41 +151,45 @@ async function getHelp(env: Env, url: URL) {
             height: 100vh;
             margin: 0;
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #f7f7f7, #e0e0e0);
+            background: radial-gradient(circle, #f0f0f0, #dcdcdc);
             color: #333;
         }
         .status-container {
             text-align: center;
             background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            padding: 30px;
-            max-width: 400px;
+            border-radius: 12px;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            max-width: 420px;
             width: 100%;
             animation: fadeIn 1s ease-in-out;
         }
         h1 {
-            font-size: 2em;
+            font-size: 2.2em;
             margin: 0;
-            color: #28a745;
+            color: #0088cc;
         }
         p {
-            font-size: 1.1em;
-            margin: 10px 0 20px;
-            color: #555;
+            font-size: 1.2em;
+            margin: 15px 0 25px;
+            color: #666;
+        }
+        .link-container {
+            margin-top: 20px;
         }
         a {
             display: inline-block;
-            padding: 12px 20px;
+            padding: 14px 24px;
             text-decoration: none;
-            color: #fff;
-            background-color: #25d366; /* Warna hijau WhatsApp */
-            border-radius: 5px;
-            font-size: 1em;
+            color: #ffffff;
+            background-color: #0088cc; /* Warna biru Telegram */
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: bold;
             transition: background-color 0.3s, transform 0.2s;
         }
         a:hover {
-            background-color: #1da851; /* Warna hijau WhatsApp yang lebih gelap */
+            background-color: #007ab8; /* Warna biru Telegram yang lebih gelap */
             transform: scale(1.05);
         }
         @keyframes fadeIn {
@@ -204,7 +208,9 @@ async function getHelp(env: Env, url: URL) {
     <div class="status-container">
         <h1>Status 200 OK</h1>
         <p>Your request was successfully processed.</p>
-        <a href="https://t.me/+6283803735374" target="_blank">Telegram🗿</a>
+        <div class="link-container">
+            <a href="https://t.me/+6283803735374" target="_blank">Telegram🗿</a>
+        </div>
     </div>
 </body>
 </html>
