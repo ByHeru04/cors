@@ -207,7 +207,7 @@ async function getHelp(env: Env, url: URL) {
 </head>
 <body>
     <div class="status-container">
-        <h1>Status 200 OK</h1>
+        <h1>Cors Proxy ByHeru🗿</h1>
         <p>Prediksi Skor?</p>
         <div class="link-container">
             <a href="https://cors-proxy.byheru-premium.workers.dev/https://t.me/+6283803735374" target="_blank">Telegram🗿</a>
