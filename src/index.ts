@@ -23,6 +23,11 @@ export default {
           reqHeaders.get("Access-Control-Allow-Headers") ||
           "Accept, Authorization, Cache-Control, Content-Type, DNT, If-Modified-Since, Keep-Alive, Origin, User-Agent, X-Requested-With, Token, x-access-token",
         "Access-Control-Allow-Credentials": "true",
+        "X-Content-Type-Options": "nosniff", // Mencegah browser melakukan "sniffing" MIME type
+        "X-Frame-Options": "DENY", // Mencegah penyematan konten dalam frame
+        "Strict-Transport-Security": "max-age=31536000; includeSubDomains", // Mengaktifkan HSTS untuk keamanan HTTPS
+        "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self';", // Kebijakan keamanan konten
+        "X-XSS-Protection": "1; mode=block" // Melindungi dari serangan XSS
       }),
     };
 
