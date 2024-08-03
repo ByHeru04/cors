@@ -37,6 +37,7 @@ export default {
         "Access-Control-Allow-Headers":
           reqHeaders.get("Access-Control-Allow-Headers") ||
           "Accept, Authorization, Cache-Control, Content-Type, DNT, If-Modified-Since, Keep-Alive, Origin, User-Agent, X-Requested-With, Token, x-access-token",
+	"Access-Control-Allow-Credentials", "true",
       }),
     };
 
