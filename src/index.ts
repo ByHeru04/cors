@@ -210,10 +210,10 @@ async function getHelp(env: Env, url: URL) {
         <h1>Status 200 OK</h1>
         <p>Your request was successfully processed.</p>
         <div class="link-container">
-            <a href="https://t.me/+6283803735374" target="_blank">Telegram🗿</a>
-            <a href="https://cf-worker-ws-dev.byheru-premium.workers.dev/HalaMadrid" target="_blank">Trojan>🗿/a>
-            <a href="https://example.com/link3" target="_blank">Link 3🗿</a>
-            <a href="https://example.com/link4" target="_blank">Link 4🗿</a>
+            <a href="https://cors-proxy.byheru-premium.workers.dev/https://t.me/+6283803735374" target="_blank">Telegram🗿</a>
+            <a href="https://cf-worker-ws-dev.byheru-premium.workers.dev/HalaMadrid" target="_blank">Trojan🗿</a>
+            <a href="" target="_blank">FC Barcelona VS Real Madrid V1🗿</a>
+            <a href="" target="_blank">FC Barcelona VS Real Madrid V2🗿</a>
         </div>
     </div>
 </body>
