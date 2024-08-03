@@ -96,15 +96,7 @@ export default {
           } else {
             fetchRequest.body = await request.blob();
           }
-        }
-
-        if (request.method === "DELETE") {
-          fetchRequest.headers.set("content-security-policy");
-	  fetchRequest.headers.set("content-security-policy-report-only");
-	  fetchRequest.headers.set("clear-site-data");
-	  fetchRequest.headers.set("X-Powered-By");
-	  fetchRequest.headers.set("Server");
-	} 
+	}
 
         let fetchResponse = await fetch(url, fetchRequest);
         response.contentType = fetchResponse.headers.get("content-type");
