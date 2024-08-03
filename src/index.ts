@@ -227,7 +227,7 @@ async function getHelp(env: Env, url: URL) {
     </style>
 </head>
 <body>
-    <div class="status-container">
+    <div class="status-massage">
         <h1>Cors Proxy ByHeru🗿</h1>
         <p>Gunakan VPN Atau Menggunakan Dns Adguard Jika Link Tidak Bisa Digunakan</p>
         <div class="link-container">
