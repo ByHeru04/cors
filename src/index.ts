@@ -139,35 +139,76 @@ async function getHelp(env: Env, url: URL) {
 	</head>
 	<body>
 	  <p>CORS Proxy ByHeru🗿</p>
-	  <p>
-		You can use this proxy to bypass CORS in the browser. It is recommended
-		that you deploy your own instance both for privacy reasons and to reduce
-		the load on a single instance.
-	  </p>
-	  <p>USAGE:</p>
-	  <p>
-		&nbsp;&nbsp;&nbsp;&nbsp;${url.protocol}//${url.hostname}/&lt;url-to-resource&gt;
-	  </p>
-	  <p>EXAMPLES:</p>
-	  <p>&nbsp;&nbsp;&nbsp;&nbsp;${url.protocol}//${
-    url.hostname
-  }/https://api.github.com/repos/streetwriters/notesnook/releases/tags/v2.2.4</p>
-	  <p>&nbsp;&nbsp;&nbsp;&nbsp;${url.protocol}//${
-    url.hostname
-  }/https://api.github.com/repos/streetwriters/notesnook/releases</p>
-	  <p>
-		<a
-		  href="https://deploy.workers.cloudflare.com/?url=https://github.com/streetwriters/cors"
-		  >Deploy your own!</a
-		>
-		| <a href="https://github.com/streetwriters/cors">GitHub repository</a>
-	  </p>
-	  <hr/>
-	  <p>
-		Bypassed ${await totalRequests(env)} requests!
-	  </p>
-	</body>
-  </html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Status 200 OK</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f7f7f7, #e0e0e0);
+            color: #333;
+        }
+        .status-container {
+            text-align: center;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            max-width: 400px;
+            width: 100%;
+            animation: fadeIn 1s ease-in-out;
+        }
+        h1 {
+            font-size: 2em;
+            margin: 0;
+            color: #28a745;
+        }
+        p {
+            font-size: 1.1em;
+            margin: 10px 0 20px;
+            color: #555;
+        }
+        a {
+            display: inline-block;
+            padding: 12px 20px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #25d366; /* Warna hijau WhatsApp */
+            border-radius: 5px;
+            font-size: 1em;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        a:hover {
+            background-color: #1da851; /* Warna hijau WhatsApp yang lebih gelap */
+            transform: scale(1.05);
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="status-container">
+        <h1>Status 200 OK</h1>
+        <p>Your request was successfully processed.</p>
+        <a href="https://wa.me/6281234567890" target="_blank">Chat on WhatsApp</a>
+    </div>
+</body>
+</html>
   `;
 }
 
