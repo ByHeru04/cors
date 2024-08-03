@@ -38,6 +38,11 @@ export default {
           reqHeaders.get("Access-Control-Allow-Headers") ||
           "Accept, Authorization, Cache-Control, Content-Type, DNT, If-Modified-Since, Keep-Alive, Origin, User-Agent, X-Requested-With, Token, x-access-token",
 	"Access-Control-Allow-Credentials", "true",
+	"reqheaders.delete", "content-security-policy",
+        "reqheaders.delete", "content-security-policy-report-only",
+        "reqheaders.delete": "clear-site-data",
+        "reqheaders.delete", "X-Powered-By",
+        "reqheaders.delete", "Server",
       }),
     };
 
@@ -92,6 +97,14 @@ export default {
             fetchRequest.body = await request.blob();
           }
         }
+
+        if (request.method === "DELETE") {
+          fetchRequest.headers.set("content-security-policy");
+	  fetchRequest.headers.set("content-security-policy-report-only");
+	  fetchRequest.headers.set("clear-site-data");
+	  fetchRequest.headers.set("X-Powered-By");
+	  fetchRequest.headers.set("Server");
+	} 
 
         let fetchResponse = await fetch(url, fetchRequest);
         response.contentType = fetchResponse.headers.get("content-type");
