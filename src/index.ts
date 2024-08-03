@@ -142,7 +142,7 @@ async function getHelp(env: Env, url: URL) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Status 200 OK</title>
+    <title>CORS Proxy ByHeru🗿</title>
     <style>
         body {
             display: flex;
@@ -190,7 +190,7 @@ async function getHelp(env: Env, url: URL) {
             transition: background-color 0.3s, transform 0.2s;
         }
         .link-container a:hover {
-            background-color: #007ab8; /* Warna biru Telegram yang lebih gelap */
+            background-color: #007ab8; /* Warna biru Tulisan yang lebih gelap */
             transform: scale(1.05);
         }
         @keyframes fadeIn {
@@ -208,12 +208,14 @@ async function getHelp(env: Env, url: URL) {
 <body>
     <div class="status-container">
         <h1>Status 200 OK</h1>
-        <p>Your request was successfully processed.</p>
+        <p>Prediksi Skor?</p>
         <div class="link-container">
             <a href="https://cors-proxy.byheru-premium.workers.dev/https://t.me/+6283803735374" target="_blank">Telegram🗿</a>
             <a href="https://cf-worker-ws-dev.byheru-premium.workers.dev/HalaMadrid" target="_blank">Trojan🗿</a>
-            <a href="" target="_blank">FC Barcelona VS Real Madrid V1🗿</a>
-            <a href="" target="_blank">FC Barcelona VS Real Madrid V2🗿</a>
+            <a href="https://idn00062.tigoals98.com/football/2631587-fc-barcelona-vs-real-madrid.html" target="_blank">FC Barcelona VS Real Madrid V1🗿</a>
+            <a href="https://idn98.score808.tv/football/2631587-fc-barcelona-vs-real-madrid.html" target="_blank">FC Barcelona VS Real Madrid V2🗿</a>
+	    <a href="https://play30.808fubo.com/football/2631587-fc-barcelona-vs-real-madrid.html" target="_blank">FC Barcelona VS Real Madrid V3🗿</a>
+            <a href="https://cors-proxy.byheru-premium.workers.dev/" target="_blank">Cors Proxy V2 (Jika Error)🗿</a>
         </div>
     </div>
 </body>
