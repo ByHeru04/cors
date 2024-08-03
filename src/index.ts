@@ -23,11 +23,18 @@ export default {
           reqHeaders.get("Access-Control-Allow-Headers") ||
           "Accept, Authorization, Cache-Control, Content-Type, DNT, If-Modified-Since, Keep-Alive, Origin, User-Agent, X-Requested-With, Token, x-access-token",
         "Access-Control-Allow-Credentials": "true",
-        "X-Content-Type-Options": "nosniff", // Mencegah browser melakukan "sniffing" MIME type
+        "X-Content-Type-Options": "nosniff", // Mencegah browser dari "sniffing" jenis MIME
         "X-Frame-Options": "DENY", // Mencegah penyematan konten dalam frame
         "Strict-Transport-Security": "max-age=31536000; includeSubDomains", // Mengaktifkan HSTS untuk keamanan HTTPS
         "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self';", // Kebijakan keamanan konten
-        "X-XSS-Protection": "1; mode=block" // Melindungi dari serangan XSS
+        "X-XSS-Protection": "1; mode=block", // Melindungi dari serangan XSS
+        "Referrer-Policy": "no-referrer-when-downgrade", // Menentukan bagaimana informasi referer dikirim
+        "Feature-Policy": "geolocation 'self'; microphone 'none'", // Kebijakan fitur untuk mengontrol akses ke fitur browser
+        "Cache-Control": "no-store, no-cache, must-revalidate, max-age=0", // Mengontrol caching oleh browser
+        "Pragma": "no-cache", // Mengontrol caching oleh server
+        "Expires": "0", // Mengatur waktu kadaluarsa konten
+        "Content-Type": "application/json", // Jenis konten default
+        "Access-Control-Max-Age": "86400" // Durasi maksimal cache preflight CORS request dalam detik
       }),
     };
 
