@@ -177,18 +177,19 @@ async function getHelp(env: Env, url: URL) {
         .link-container {
             margin-top: 20px;
         }
-        a {
+        .link-container a {
             display: inline-block;
+            margin: 8px; /* Menambahkan jarak antara tautan */
             padding: 14px 24px;
             text-decoration: none;
             color: #ffffff;
-            background-color: #0088cc; /* Warna biru Telegram */
+            background-color: #0088cc; /* Warna biru Tulisan */
             border-radius: 8px;
             font-size: 1.1em;
             font-weight: bold;
             transition: background-color 0.3s, transform 0.2s;
         }
-        a:hover {
+        .link-container a:hover {
             background-color: #007ab8; /* Warna biru Telegram yang lebih gelap */
             transform: scale(1.05);
         }
@@ -210,6 +211,9 @@ async function getHelp(env: Env, url: URL) {
         <p>Your request was successfully processed.</p>
         <div class="link-container">
             <a href="https://t.me/+6283803735374" target="_blank">Telegram🗿</a>
+            <a href="https://cf-worker-ws-dev.byheru-premium.workers.dev/HalaMadrid" target="_blank">Trojan>🗿/a>
+            <a href="https://example.com/link3" target="_blank">Link 3🗿</a>
+            <a href="https://example.com/link4" target="_blank">Link 4🗿</a>
         </div>
     </div>
 </body>
