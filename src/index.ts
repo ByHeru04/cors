@@ -187,15 +187,11 @@ async function getHelp(env: Env, url: URL) {
 </head>
 <body>
     <div class="status-container">
-        <h1>Proxy CORS ByHeru🗿</h1>
-        <p>Prediksi Skor?</p>
+        <h1>CORS Proxy ByHeru🗿</h1>
+        <p>Mau Ngapain Bang?</p>
         <div class="link-container">
-            <a href="https://cors-proxy.byheru-premium.workers.dev/https://t.me/+6283803735374" target="_blank">Chat Telegram🗿</a>
+            <a href="https://cors.byheru-premium.workers.dev/t.me/+6283803735374" target="_blank">Chat Telegram🗿</a>
             <a href="https://cf-worker-ws-dev.byheru-premium.workers.dev/HalaMadrid" target="_blank">Trojan🗿</a>
-            <a href="https://idn00062.tigoals98.com/football/2631587-fc-barcelona-vs-real-madrid.html" target="_blank">FC Barcelona VS Real Madrid V1🗿</a>
-            <a href="https://idn98.score808.tv/football/2631587-fc-barcelona-vs-real-madrid.html" target="_blank">FC Barcelona VS Real Madrid V2🗿</a>
-            <a href="https://play30.808fubo.com/football/2631587-fc-barcelona-vs-real-madrid.html" target="_blank">FC Barcelona VS Real Madrid V3🗿</a>
-            <a href="https://cors-proxy.byheru-premium.workers.dev/https://m.jalatv37.com/#/" target="_blank">Proxy CORS V2 (Jika Error)🗿</a>
         </div>
     </div>
 </body>
