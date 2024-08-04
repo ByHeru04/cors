@@ -122,7 +122,7 @@ async function getHelp(env: Env, url: URL) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proxy CORS ByHeru🗿</title>
+    <title>CORS Proxy ByHeru🗿</title>
     <style>
         body {
             display: flex;
