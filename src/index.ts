@@ -11,6 +11,7 @@ export interface Env {
 
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
+    const url = new URL(request.url);
     if (url.pathname === '/success') {
       return new Response(successPage(), {
         headers: { 'Content-Type': 'text/html' }
