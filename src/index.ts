@@ -142,15 +142,6 @@ export default {
   },
 };
 
-function urlValidation(url: string): boolean {
-  try {
-    new URL(url);
-    return true;
-  } catch (e) {
-    return false;
-  }
-}
-
 async function getHelp(env: Env, url: URL) {
   const totalRequestsCount = await totalRequests(env);
   return `<!DOCTYPE html>
