@@ -139,8 +139,7 @@ export default {
 
     return new Response(response.body, {
       status: response.status,
-      statusText: response.text,
-      headers: response.headers,
+      statusTexaders: response.headers,
     });
   },
 };
@@ -148,104 +147,9 @@ export default {
 async function getHelp(env: Env, url: URL) {
   const totalRequestsCount = await totalRequests(env);
   return `<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CORS Proxy ByHeru🗿</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: 'Arial', sans-serif;
-            background: radial-gradient(circle, #f0f0f0, #dcdcdc);
-            color: #333;
-        }
-        .status-container {
-            text-align: center;
-            background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-            padding: 40px;
-            max-width: 420px;
-            width: 100%;
-            animation: fadeIn 1s ease-in-out;
-        }
-        h1 {
-            font-size: 2.2em;
-            margin: 0;
-            color: #0088cc;
-        }
-        p {
-            font-size: 1.2em;
-            margin: 15px 0 25px;
-            color: #666;
-        }
-        .link-container {
-            margin-top: 20px;
-        }
-        .link-container a {
-            display: inline-block;
-            margin: 8px;
-            padding: 14px 24px;
-            text-decoration: none;
-            color: #ffffff;
-            background-color: #0088cc;
-            border-radius: 8px;
-            font-size: 1.1em;
-            font-weight: bold;
-            transition: background-color 0.3s, transform 0.2s;
-        }
-        .link-container a:hover {
-            background-color: #007ab8;
-            transform: scale(1.05);
-        }
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="status-container">
-        <h1>CORS Proxy ByHeru🗿</h1>
-        <p>Total Requests Served: ${totalRequestsCount}</p>
-        <div class="link-container">
-            <a href="https://cors.byheru-premium.workers.dev/t.me/+6283803735374" target="_blank">Telegram🗿</a>
-            <a href="https://cf-worker-ws-dev.byheru-premium.workers.dev/HalaMadrid" target="_blank">Trojan🗿</a>
-            <a href="https://cors-proxy.byheru-premium.workers.dev/" target="_blank">Cors Proxy V2</a>
-        </div>
-    </div>
-</body>
-</html>`;
-}
-
-async function increment(env: Env) {
-  if (!env.ANALYTICS) return;
-  let count = parseInt((await env.ANALYTICS.get("total_requests")) || "0");
-  await env.ANALYTICS.put("total_requests", (++count).toFixed());
-}
-
-async function totalRequests(env: Env) {
-  if (!env.ANALYTICS) return 0;
-  return await env.ANALYTICS.get("total_requests");
-}
-
-function loginPage(errorMessage = '') {
-  return `
-<!DOCTYPE html>
 <html lang="ID">
 <head>
-    <title>Cors Proxy Login🗿</title>
+    <title>Cors Proxy🗿</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style>
         .container {
@@ -304,87 +208,13 @@ function loginPage(errorMessage = '') {
   `;
 }
 
-function successPage() {
-  return `
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CORS Proxy ByHeru🗿</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: 'Arial', sans-serif;
-            background: radial-gradient(circle, #f0f0f0, #dcdcdc);
-            color: #333;
-        }
-        .status-container {
-            text-align: center;
-            background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-            padding: 40px;
-            max-width: 420px;
-            width: 100%;
-            animation: fadeIn 1s ease-in-out;
-        }
-        h1 {
-            font-size: 2.2em;
-            margin: 0;
-            color: #0088cc;
-        }
-        p {
-            font-size: 1.2em;
-            margin: 15px 0 25px;
-            color: #666;
-        }
-        .link-container {
-            margin-top: 20px;
-        }
-        .link-container a {
-            display: inline-block;
-            margin: 8px;
-            padding: 14px 24px;
-            text-decoration: none;
-            color: #ffffff;
-            background-color: #0088cc;
-            border-radius: 8px;
-            font-size: 1.1em;
-            font-weight: bold;
-            transition: background-color 0.3s, transform 0.2s;
-        }
-        .link-container a:hover {
-            background-color: #007ab8;
-            transform: scale(1.05);
-        }
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="status-container">
-        <h1>CORS Proxy ByHeru🗿</h1>
-        <p>Mau Ngapain Bang?</p>
-        <div class="link-container">
-            <a href="https://cors.byheru-premium.workers.dev/t.me/+6283803735374" target="_blank">Telegram🗿</a>
-            <a href="https://cf-worker-ws-dev.byheru-premium.workers.dev/HalaMadrid" target="_blank">Trojan🗿</a>
-            <a href="https://cors-proxy.byheru-premium.workers.dev/" target="_blank">Cors Proxy V2</a>
-        </div>
-    </div>
-</body>
-</html>
-  `;
+async function increment(env: Env) {
+  if (!env.ANALYTICS) return;
+  let count = parseInt((await env.ANALYTICS.get("total_requests")) || "0");
+  await env.ANALYTICS.put("total_requests", (++count).toFixed());
+}
+
+async function totalRequests(env: Env) {
+  if (!env.ANALYTICS) return 0;
+  return await env.ANALYTICS.get("total_requests");
 }
