@@ -37,6 +37,8 @@ export default {
         headers: { 'Content-Type': 'text/html' }
       });
     }
+
+    const url = new URL(request.url);
     const reqHeaders = new Headers(request.headers);
     const response: {
       body: BodyInit | null;
