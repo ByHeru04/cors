@@ -30,7 +30,6 @@ export default {
         "Access-Control-Allow-Headers":
           reqHeaders.get("Access-Control-Allow-Headers") ||
           "Accept, Authorization, Cache-Control, Content-Type, DNT, If-Modified-Since, Keep-Alive, Origin, User-Agent, X-Requested-With, Token, x-access-token",
-         "Access-Control-Allow-Credentials": "true",
       }),
     };
 
@@ -111,73 +110,24 @@ export default {
 
     return new Response(response.body, {
       status: response.status,
-      statusTexaders: response.headers,
+      statusText: response.text,
+      headers: response.headers,
     });
   },
 };
 
-async function getHelp(env: Env, url: URL) {
-  const totalRequestsCount = await totalRequests(env);
-  return `<!DOCTYPE html>
-<html lang="ID">
-<head>
-    <title>Cors Proxy🗿</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <style>
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
-        }
-        .child {
-            background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-            padding: 40px;
-            text-align: center;
-        }
-        .card-title {
-            color: #333;
-        }
-        .input-group {
-            margin-bottom: 15px;
-        }
-        .btn-login {
-            width: 100%;
-            padding: 10px;
-            background-color: #0088cc;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-        .error-message {
-            color: red;
-            margin-bottom: 15px;
-            font-weight: bold;
-        }
-    </style>
-</head>
-
-<body>
-    <div class="container">
-        <div class="child">
-                <h2 class="card-title">Cors Proxy ByHeru🗿</h2>
-                ${errorMessage ? `<div class="error-message">${errorMessage}</div>` : ''}
-                <div class="input-group">
-                    <input class="card-input" type="text" placeholder="Nama pengguna" name="username" required/>
-                    <input class="card-input" type="password" placeholder="Kata sandi" name="password" required/>
-                </div>
-                <button type="submit" class="btn-login">Masuk</button>
-            </form>
-        </div>
-    </div>
-</body>
-</html>
-  `;
+function fixUrl(url: string) {
+  if (url.includes("://")) {
+    return url;
+  } else if (url.includes(":/")) {
+    return url.replace(":/", "://");
+  } else {
+    return "http://" + url;
+  }
 }
+
+async function getHelp(env: Env, url: URL) {
+  return `
 
 async function increment(env: Env) {
   if (!env.ANALYTICS) return;
@@ -188,4 +138,4 @@ async function increment(env: Env) {
 async function totalRequests(env: Env) {
   if (!env.ANALYTICS) return 0;
   return await env.ANALYTICS.get("total_requests");
-}
+  }
