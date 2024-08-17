@@ -55,68 +55,57 @@ export default {
     };
 
     try {
-      // Menghapus https://
-      let proxyUrl = request.url.substring(8);
-      // Decode URL request asli
-      proxyUrl = decodeURIComponent(proxyUrl.substring(proxyUrl.indexOf("/") + 1));
+      // Menghapus https:// jika diperlukan
+      let proxyUrl = decodeURIComponent(url.pathname.slice(1));
+      proxyUrl = fixUrl(proxyUrl);
 
-      if (
-        request.method === "OPTIONS" ||
-        proxyUrl.length < 3 ||
-        proxyUrl.indexOf(".") === -1 ||
-        proxyUrl === "favicon.ico" ||
-        proxyUrl === "robots.txt"
-      ) {
-        const invalid = !(request.method === "OPTIONS" || proxyUrl.length === 0);
-        response.body = await getHelp(env, new URL(request.url));
-        response.contentType = "text/html";
-        response.status = invalid ? 400 : 200;
-      } else {
-        proxyUrl = fixUrl(proxyUrl);
-
-        const fetchRequest: {
-          headers: Headers;
-          method: string;
-          body?: BodyInit;
-        } = {
-          method: request.method,
-          headers: new Headers(),
-        };
-
-        const dropHeaders = ["content-length", "content-type", "host"];
-        for (let [key, value] of reqHeaders.entries()) {
-          if (!dropHeaders.includes(key)) {
-            fetchRequest.headers.set(key, value);
-          }
-        }
-
-        if (["POST", "PUT", "PATCH", "DELETE"].includes(request.method)) {
-          const ct = (reqHeaders.get("content-type") || "").toLowerCase();
-          if (ct.includes("application/json")) {
-            fetchRequest.body = JSON.stringify(await request.json());
-          } else if (ct.includes("application/text") || ct.includes("text/html")) {
-            fetchRequest.body = await request.text();
-          } else if (ct.includes("form")) {
-            fetchRequest.body = await request.formData();
-          } else {
-            fetchRequest.body = await request.blob();
-          }
-        }
-
-        const fetchResponse = await fetch(proxyUrl, fetchRequest);
-        response.contentType = fetchResponse.headers.get("content-type");
-        response.status = fetchResponse.status;
-        response.text = fetchResponse.statusText;
-        response.body = fetchResponse.body;
-
-        await increment(env);
+      // Validasi URL
+      if (!urlValidation(proxyUrl)) {
+        throw new Error('Invalid URL');
       }
+
+      const fetchRequest: {
+        headers: Headers;
+        method: string;
+        body?: BodyInit;
+      } = {
+        method: request.method,
+        headers: new Headers(),
+      };
+
+      const dropHeaders = ["content-length", "content-type", "host"];
+      for (let [key, value] of reqHeaders.entries()) {
+        if (!dropHeaders.includes(key)) {
+          fetchRequest.headers.set(key, value);
+        }
+      }
+
+      if (["POST", "PUT", "PATCH", "DELETE"].includes(request.method)) {
+        const ct = (reqHeaders.get("content-type") || "").toLowerCase();
+        if (ct.includes("application/json")) {
+          fetchRequest.body = JSON.stringify(await request.json());
+        } else if (ct.includes("application/text") || ct.includes("text/html")) {
+          fetchRequest.body = await request.text();
+        } else if (ct.includes("form")) {
+          fetchRequest.body = await request.formData();
+        } else {
+          fetchRequest.body = await request.blob();
+        }
+      }
+
+      const fetchResponse = await fetch(proxyUrl, fetchRequest);
+      response.contentType = fetchResponse.headers.get("content-type");
+      response.status = fetchResponse.status;
+      response.text = fetchResponse.statusText;
+      response.body = await fetchResponse.text();
+
+      await increment(env);
     } catch (err) {
       if (err instanceof Error) {
         response.contentType = "application/json";
         response.body = JSON.stringify({
           code: -1,
-          msg: JSON.stringify(err.stack) || err,
+          msg: err.stack || err.message || err,
         });
         response.status = 500;
       }
@@ -141,6 +130,15 @@ function fixUrl(url: string) {
     return url.replace(":/", "://");
   } else {
     return "http://" + url;
+  }
+}
+
+function urlValidation(url: string): boolean {
+  try {
+    new URL(url);
+    return true;
+  } catch (e) {
+    return false;
   }
 }
 
@@ -386,4 +384,4 @@ function successPage() {
 </body>
 </html>
   `;
-      }
+}
