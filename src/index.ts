@@ -26,6 +26,34 @@ export default {
       }
     }
 
+  addEventListener("fetch", event => {
+  event.respondWith(handleRequest(event.request));
+});
+
+async function handleRequest(request) {
+  const url = new URL(request.url);
+  const targetUrl = url.searchParams.get("HalaMadrid");
+
+  if (!targetUrl) {
+    return new Response("https://cors.byheru-premium.workers.dev/?HalaMadrid=", { status: 400 });
+  }
+
+  const modifiedRequest = new Request(targetUrl, request);
+  const response = await fetch(modifiedRequest);
+
+  // Clone the response so we can modify the headers
+  const modifiedResponse = new Response(response.body, response);
+
+  // Set CORS headers
+  modifiedResponse.headers.set("Access-Control-Allow-Origin", "*");
+  modifiedResponse.headers.set("Access-Control-Allow-Methods", "GET, POST, PUT, OPTIONS");
+  modifiedResponse.headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  modifiedResponse.headers.set("Access-Control-Allow-Credentials", "true");
+  modifiedResponse.headers.set("Access-Control-Expose-Headers", "Content-Length, X-JSON");
+
+  return modifiedResponse;
+}
+
     if (url.pathname === '/' || request.method === 'GET') {
       return new Response(loginPage(), {
         headers: { 'Content-Type': 'text/html' }
