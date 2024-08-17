@@ -1,32 +1,16 @@
 export interface Env {
+  // Example binding to KV. Learn more at https://developers.cloudflare.com/workers/runtime-apis/kv/
   ANALYTICS: KVNamespace;
+  //
+  // Example binding to Durable Object. Learn more at https://developers.cloudflare.com/workers/runtime-apis/durable-objects/
+  // MY_DURABLE_OBJECT: DurableObjectNamespace;
+  //
+  // Example binding to R2. Learn more at https://developers.cloudflare.com/workers/runtime-apis/r2/
+  // MY_BUCKET: R2Bucket;
 }
 
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
-    const url = new URL(request.url);
-    const targetUrl = url.searchParams.get("HalaMadrid");
-
-  if (!targetUrl) {
-    return new Response("https://cors.byheru-premium.workers.dev/?HalaMadrid=", { status: 400 });
-  }
-
-  const modifiedRequest = new Request(targetUrl, request);
-  const response = await fetch(modifiedRequest);
-
-  // Clone the response so we can modify the headers
-  const modifiedResponse = new Response(response.body, response);
-
-  // Set CORS headers
-  modifiedResponse.headers.set("Access-Control-Allow-Origin", "*");
-  modifiedResponse.headers.set("Access-Control-Allow-Methods", "GET, POST, PUT, OPTIONS");
-  modifiedResponse.headers.set("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  modifiedResponse.headers.set("Access-Control-Allow-Credentials", "true");
-  modifiedResponse.headers.set("Access-Control-Expose-Headers", "Content-Length, X-JSON");
-
-  return modifiedResponse;
-  }
-  
     if (url.pathname === '/success') {
       return new Response(successPage(), {
         headers: { 'Content-Type': 'text/html' }
@@ -52,7 +36,6 @@ export default {
         headers: { 'Content-Type': 'text/html' }
       });
     }
-
     const reqHeaders = new Headers(request.headers);
     const response: {
       body: BodyInit | null;
@@ -67,72 +50,87 @@ export default {
       text: "OK",
       headers: new Headers({
         "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS",
+        "Access-Control-Allow-Methods":
+          "GET, POST, PUT, PATCH, DELETE, OPTIONS",
         "Access-Control-Allow-Headers":
           reqHeaders.get("Access-Control-Allow-Headers") ||
           "Accept, Authorization, Cache-Control, Content-Type, DNT, If-Modified-Since, Keep-Alive, Origin, User-Agent, X-Requested-With, Token, x-access-token",
-        "Access-Control-Allow-Credentials": "true",
+         "Access-Control-Allow-Credentials": "true",
       }),
     };
 
     try {
-      // Menghapus https:// jika diperlukan
-      let proxyUrl = decodeURIComponent(url.pathname.slice(1));
-      proxyUrl = fixUrl(proxyUrl);
+      // get rid of https://
+      let url = request.url.substring(8);
+      // decode the original request url
+      url = decodeURIComponent(url.substring(url.indexOf("/") + 1));
 
-      // Validasi URL
-      if (!urlValidation(proxyUrl)) {
-        throw new Error('Invalid URL');
-      }
+      if (
+        request.method == "OPTIONS" ||
+        url.length < 3 ||
+        url.indexOf(".") == -1 ||
+        url == "favicon.ico" ||
+        url == "robots.txt"
+      ) {
+        const invalid = !(request.method == "OPTIONS" || url.length === 0);
+        response.body = await getHelp(env, new URL(request.url));
+        response.contentType = "text/html";
+        response.status = invalid ? 400 : 200;
+      } else {
+        url = fixUrl(url);
 
-      const fetchRequest: {
-        headers: Headers;
-        method: string;
-        body?: BodyInit;
-      } = {
-        method: request.method,
-        headers: new Headers(),
-      };
+        let fetchRequest: {
+          headers: Headers;
+          method: string;
+          body?: BodyInit;
+        } = {
+          method: request.method,
+          headers: new Headers(),
+        };
 
-      const dropHeaders = ["content-length", "content-type", "host"];
-      for (let [key, value] of reqHeaders.entries()) {
-        if (!dropHeaders.includes(key)) {
-          fetchRequest.headers.set(key, value);
+        const dropHeaders = ["content-length", "content-type", "host"];
+        for (let [key, value] of reqHeaders.entries()) {
+          if (!dropHeaders.includes(key)) {
+            fetchRequest.headers.set(key, value);
+          }
         }
-      }
 
-      if (["POST", "PUT", "PATCH", "DELETE"].includes(request.method)) {
-        const ct = (reqHeaders.get("content-type") || "").toLowerCase();
-        if (ct.includes("application/json")) {
-          fetchRequest.body = JSON.stringify(await request.json());
-        } else if (ct.includes("application/text") || ct.includes("text/html")) {
-          fetchRequest.body = await request.text();
-        } else if (ct.includes("form")) {
-          fetchRequest.body = await request.formData();
-        } else {
-          fetchRequest.body = await request.blob();
+        if (["POST", "PUT", "PATCH", "DELETE"].indexOf(request.method) >= 0) {
+          const ct = (reqHeaders.get("content-type") || "").toLowerCase();
+          if (ct.includes("application/json")) {
+            fetchRequest.body = JSON.stringify(await request.json());
+          } else if (
+            ct.includes("application/text") ||
+            ct.includes("text/html")
+          ) {
+            fetchRequest.body = await request.text();
+          } else if (ct.includes("form")) {
+            fetchRequest.body = await request.formData();
+          } else {
+            fetchRequest.body = await request.blob();
+          }
         }
+
+        let fetchResponse = await fetch(url, fetchRequest);
+        response.contentType = fetchResponse.headers.get("content-type");
+        response.status = fetchResponse.status;
+        response.text = fetchResponse.statusText;
+        response.body = fetchResponse.body;
+
+        await increment(env);
       }
-
-      const fetchResponse = await fetch(proxyUrl, fetchRequest);
-      response.contentType = fetchResponse.headers.get("content-type");
-      response.status = fetchResponse.status;
-      response.text = fetchResponse.statusText;
-      response.body = await fetchResponse.text();
-
-      await increment(env);
     } catch (err) {
       if (err instanceof Error) {
         response.contentType = "application/json";
         response.body = JSON.stringify({
           code: -1,
-          msg: err.stack || err.message || err,
+          msg: JSON.stringify(err.stack) || err,
         });
         response.status = 500;
       }
     }
 
-    if (response.contentType && response.contentType !== "") {
+    if (response.contentType && response.contentType != "") {
       response.headers.set("content-type", response.contentType);
     }
 
@@ -143,16 +141,6 @@ export default {
     });
   },
 };
-
-function fixUrl(url: string) {
-  if (url.includes("://")) {
-    return url;
-  } else if (url.includes(":/")) {
-    return url.replace(":/", "://");
-  } else {
-    return "http://" + url;
-  }
-}
 
 function urlValidation(url: string): boolean {
   try {
@@ -255,7 +243,7 @@ async function increment(env: Env) {
 
 async function totalRequests(env: Env) {
   if (!env.ANALYTICS) return 0;
-  return parseInt(await env.ANALYTICS.get("total_requests") || "0");
+  return await env.ANALYTICS.get("total_requests");
 }
 
 function loginPage(errorMessage = '') {
