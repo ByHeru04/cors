@@ -6,27 +6,7 @@ export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
 
-    if (url.pathname === '/success') {
-      return new Response(successPage(), {
-        headers: { 'Content-Type': 'text/html' }
-      });
-    }
-
-    if (request.method === 'POST' && url.pathname === '/login') {
-      const formData = await request.formData();
-      const username = formData.get('username');
-      const password = formData.get('password');
-
-      if (username === 'ByHeruVIPS' && password === 'HalaMadrid') {
-        return Response.redirect(url.origin + '/success', 302);
-      } else {
-        return new Response(loginPage('Username atau Password salah!'), {
-          headers: { 'Content-Type': 'text/html' }
-        });
-      }
-    }
-
-  addEventListener("fetch", event => {
+    addEventListener("fetch", event => {
   event.respondWith(handleRequest(event.request));
 });
 
@@ -53,6 +33,26 @@ async function handleRequest(request) {
 
   return modifiedResponse;
 }
+
+    if (url.pathname === '/success') {
+      return new Response(successPage(), {
+        headers: { 'Content-Type': 'text/html' }
+      });
+    }
+
+    if (request.method === 'POST' && url.pathname === '/login') {
+      const formData = await request.formData();
+      const username = formData.get('username');
+      const password = formData.get('password');
+
+      if (username === 'ByHeruVIPS' && password === 'HalaMadrid') {
+        return Response.redirect(url.origin + '/success', 302);
+      } else {
+        return new Response(loginPage('Username atau Password salah!'), {
+          headers: { 'Content-Type': 'text/html' }
+        });
+      }
+    }
 
     if (url.pathname === '/' || request.method === 'GET') {
       return new Response(loginPage(), {
