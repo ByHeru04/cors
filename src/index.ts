@@ -5,14 +5,7 @@ export interface Env {
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
-
-    addEventListener("fetch", event => {
-  event.respondWith(handleRequest(event.request));
-});
-
-async function handleRequest(request) {
-  const url = new URL(request.url);
-  const targetUrl = url.searchParams.get("HalaMadrid");
+    const targetUrl = url.searchParams.get("HalaMadrid");
 
   if (!targetUrl) {
     return new Response("https://cors.byheru-premium.workers.dev/?HalaMadrid=", { status: 400 });
@@ -32,8 +25,8 @@ async function handleRequest(request) {
   modifiedResponse.headers.set("Access-Control-Expose-Headers", "Content-Length, X-JSON");
 
   return modifiedResponse;
-}
-
+  }
+  
     if (url.pathname === '/success') {
       return new Response(successPage(), {
         headers: { 'Content-Type': 'text/html' }
