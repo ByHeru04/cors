@@ -11,14 +11,7 @@ export interface Env {
 
 export default {
   async fetch(request: Request, env: Env): Promise<Response> {
-    const url = new URL(request.url);
-    if (url.pathname === '/success') {
-      return new Response(successPage(), {
-        headers: { 'Content-Type': 'text/html' }
-      });
-    }
-
-    if (request.method === 'POST' && url.pathname === '/login') {
+    if (request.method === 'POST' && url.pathname === '/') {
       const formData = await request.formData();
       const username = formData.get('username');
       const password = formData.get('password');
@@ -38,7 +31,6 @@ export default {
       });
     }
 
-    const url = new URL(request.url);
     const reqHeaders = new Headers(request.headers);
     const response: {
       body: BodyInit | null;
