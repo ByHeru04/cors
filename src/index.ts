@@ -179,7 +179,6 @@ async function getHelp(env: Env, url: URL) {
 <body>
     <div class="container">
         <div class="child">
-            <form class="form-group" action="/login" method="POST">
                 <h2 class="card-title">Cors Proxy ByHeru🗿</h2>
                 ${errorMessage ? `<div class="error-message">${errorMessage}</div>` : ''}
                 <div class="input-group">
