@@ -1,11 +1,11 @@
 export interface Env {
-  // Example binding to KV. Learn more at https://developers.cloudflare.com/workers/runtime-apis/kv/
+  // Contoh binding ke KV. Pelajari lebih lanjut di https://developers.cloudflare.com/workers/runtime-apis/kv/
   ANALYTICS: KVNamespace;
   //
-  // Example binding to Durable Object. Learn more at https://developers.cloudflare.com/workers/runtime-apis/durable-objects/
+  // Contoh binding ke Durable Object. Pelajari lebih lanjut di https://developers.cloudflare.com/workers/runtime-apis/durable-objects/
   // MY_DURABLE_OBJECT: DurableObjectNamespace;
   //
-  // Example binding to R2. Learn more at https://developers.cloudflare.com/workers/runtime-apis/r2/
+  // Contoh binding ke R2. Pelajari lebih lanjut di https://developers.cloudflare.com/workers/runtime-apis/r2/
   // MY_BUCKET: R2Bucket;
 }
 
@@ -25,8 +25,7 @@ export default {
       text: "OK",
       headers: new Headers({
         "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods":
-          "GET, POST, PUT, PATCH, DELETE, OPTIONS",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS",
         "Access-Control-Allow-Headers":
           reqHeaders.get("Access-Control-Allow-Headers") ||
           "Accept, Authorization, Cache-Control, Content-Type, DNT, If-Modified-Since, Keep-Alive, Origin, User-Agent, X-Requested-With, Token, x-access-token",
@@ -34,9 +33,9 @@ export default {
     };
 
     try {
-      // get rid of https://
+      // hilangkan https://
       let url = request.url.substring(8);
-      // decode the original request url
+      // decode URL permintaan asli
       url = decodeURIComponent(url.substring(url.indexOf("/") + 1));
 
       if (
@@ -140,47 +139,47 @@ async function getHelp(env: Env, url: URL) {
             align-items: center;
             height: 100vh;
             margin: 0;
-            font-family: 'Arial', sans-serif;
-            background: radial-gradient(circle, #f0f0f0, #dcdcdc);
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #fdfbfb, #ebedee);
             color: #333;
         }
         .status-container {
             text-align: center;
             background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-            padding: 40px;
-            max-width: 420px;
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            padding: 50px;
+            max-width: 450px;
             width: 100%;
             animation: fadeIn 1s ease-in-out;
         }
         h1 {
-            font-size: 2.2em;
+            font-size: 2.5em;
             margin: 0;
-            color: #0088cc;
+            color: #007BFF;
         }
         p {
-            font-size: 1.2em;
-            margin: 15px 0 25px;
-            color: #666;
+            font-size: 1.3em;
+            margin: 20px 0 30px;
+            color: #555;
         }
         .link-container {
-            margin-top: 20px;
+            margin-top: 25px;
         }
         .link-container a {
             display: inline-block;
-            margin: 8px;
-            padding: 14px 24px;
+            margin: 10px;
+            padding: 16px 28px;
             text-decoration: none;
-            color: #ffffff;
-            background-color: #0088cc;
+            color: #fff;
+            background-color: #007BFF;
             border-radius: 8px;
-            font-size: 1.1em;
+            font-size: 1.2em;
             font-weight: bold;
             transition: background-color 0.3s, transform 0.2s;
         }
         .link-container a:hover {
-            background-color: #007ab8;
+            background-color: #0056b3;
             transform: scale(1.05);
         }
         @keyframes fadeIn {
@@ -220,4 +219,4 @@ async function increment(env: Env) {
 async function totalRequests(env: Env) {
   if (!env.ANALYTICS) return 0;
   return await env.ANALYTICS.get("total_requests");
-  }
+}
