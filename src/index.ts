@@ -100,23 +100,6 @@ export default {
   },
 };
 
-// Fungsi untuk menghapus headers tertentu dari permintaan
-function deleteHeaders(reqHeaders: Headers): { headers: Headers; method: string; body?: BodyInit } {
-  const fetchRequest: { headers: Headers; method: string; body?: BodyInit } = {
-    method: "GET", // Default method
-    headers: new Headers(),
-  };
-
-  const headersToDelete = ["content-security-policy", "content-security-policy-report-only", "clear-site-data"];
-  for (let [key, value] of reqHeaders.entries()) {
-    if (!headersToDelete.includes(key.toLowerCase())) {
-      fetchRequest.headers.set(key, value);
-    }
-  }
-
-  return fetchRequest;
-}
-
 function fixUrl(url: string): string {
   if (url.includes("://")) {
     return url;
