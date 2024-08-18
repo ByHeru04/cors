@@ -53,8 +53,6 @@ export default {
         response.contentType = "text/html";
         response.status = invalid ? 400 : 200;
       } else {
-        // Hapus headers tertentu sebelum meneruskan permintaan
-        const fetchRequest = deleteHeaders(reqHeaders);
 
         if (["POST", "PUT", "PATCH", "DELETE"].includes(request.method)) {
           const ct = (reqHeaders.get("content-type") || "").toLowerCase();
