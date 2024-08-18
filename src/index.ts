@@ -31,7 +31,6 @@ export default {
         "Referrer-Policy": "no-referrer",
         "Content-Security-Policy": "default-src 'self'; script-src 'none'; object-src 'none'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com",
         "Permissions-Policy": "geolocation=(), microphone=(), camera=()",
-        "Access-Control-Allow-Credentials": "true",
       }),
     };
 
@@ -53,19 +52,8 @@ export default {
         response.contentType = "text/html";
         response.status = invalid ? 400 : 200;
       } else {
-
-        if (["POST", "PUT", "PATCH", "DELETE"].includes(request.method)) {
-          const ct = (reqHeaders.get("content-type") || "").toLowerCase();
-          if (ct.includes("application/json")) {
-            fetchRequest.body = JSON.stringify(await request.json());
-          } else if (ct.includes("application/text") || ct.includes("text/html")) {
-            fetchRequest.body = await request.text();
-          } else if (ct.includes("form")) {
-            fetchRequest.body = await request.formData();
-          } else {
-            fetchRequest.body = await request.blob();
-          }
-        }
+        // Hapus headers tertentu sebelum meneruskan permintaan
+        const fetchRequest = prepareFetchRequest(request, reqHeaders);
 
         let fetchResponse = await fetch(url, fetchRequest);
         response.contentType = fetchResponse.headers.get("content-type");
@@ -97,6 +85,38 @@ export default {
     });
   },
 };
+
+function prepareFetchRequest(
+  request: Request,
+  reqHeaders: Headers
+): { headers: Headers; method: string; body?: BodyInit } {
+  const fetchRequest: { headers: Headers; method: string; body?: BodyInit } = {
+    method: request.method,
+    headers: new Headers(),
+  };
+
+  const headersToDelete = ["x-powered-by", "server", "via"];
+  for (let [key, value] of reqHeaders.entries()) {
+    if (!headersToDelete.includes(key.toLowerCase())) {
+      fetchRequest.headers.set(key, value);
+    }
+  }
+
+  if (["POST", "PUT", "PATCH", "DELETE"].includes(request.method)) {
+    const ct = (reqHeaders.get("content-type") || "").toLowerCase();
+    if (ct.includes("application/json")) {
+      fetchRequest.body = JSON.stringify(await request.json());
+    } else if (ct.includes("application/text") || ct.includes("text/html")) {
+      fetchRequest.body = await request.text();
+    } else if (ct.includes("form")) {
+      fetchRequest.body = await request.formData();
+    } else {
+      fetchRequest.body = await request.blob();
+    }
+  }
+
+  return fetchRequest;
+}
 
 function fixUrl(url: string): string {
   if (url.includes("://")) {
@@ -202,4 +222,4 @@ async function increment(env: Env) {
 async function totalRequests(env: Env): Promise<number> {
   if (!env.ANALYTICS) return 0;
   return parseInt((await env.ANALYTICS.get("total_requests")) || "0");
-}
+  }
