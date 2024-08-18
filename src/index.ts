@@ -41,19 +41,50 @@ export default {
       url = decodeURIComponent(url.substring(url.indexOf("/") + 1));
 
       if (
-        request.method === "OPTIONS" ||
+        request.method == "OPTIONS" ||
         url.length < 3 ||
-        url.indexOf(".") === -1 ||
-        url === "favicon.ico" ||
-        url === "robots.txt"
+        url.indexOf(".") == -1 ||
+        url == "favicon.ico" ||
+        url == "robots.txt"
       ) {
-        const invalid = !(request.method === "OPTIONS" || url.length === 0);
+        const invalid = !(request.method == "OPTIONS" || url.length === 0);
         response.body = await getHelp(env, new URL(request.url));
         response.contentType = "text/html";
         response.status = invalid ? 400 : 200;
       } else {
-        // Hapus headers tertentu sebelum meneruskan permintaan
-        const fetchRequest = prepareFetchRequest(request, reqHeaders);
+        url = fixUrl(url);
+
+        let fetchRequest: {
+          headers: Headers;
+          method: string;
+          body?: BodyInit;
+        } = {
+          method: request.method,
+          headers: new Headers(),
+        };
+
+        const dropHeaders = ["content-length", "content-type", "host"];
+        for (let [key, value] of reqHeaders.entries()) {
+          if (!dropHeaders.includes(key)) {
+            fetchRequest.headers.set(key, value);
+          }
+        }
+
+        if (["POST", "PUT", "PATCH", "DELETE"].indexOf(request.method) >= 0) {
+          const ct = (reqHeaders.get("content-type") || "").toLowerCase();
+          if (ct.includes("application/json")) {
+            fetchRequest.body = JSON.stringify(await request.json());
+          } else if (
+            ct.includes("application/text") ||
+            ct.includes("text/html")
+          ) {
+            fetchRequest.body = await request.text();
+          } else if (ct.includes("form")) {
+            fetchRequest.body = await request.formData();
+          } else {
+            fetchRequest.body = await request.blob();
+          }
+        }
 
         let fetchResponse = await fetch(url, fetchRequest);
         response.contentType = fetchResponse.headers.get("content-type");
@@ -74,7 +105,7 @@ export default {
       }
     }
 
-    if (response.contentType && response.contentType !== "") {
+    if (response.contentType && response.contentType != "") {
       response.headers.set("content-type", response.contentType);
     }
 
@@ -86,39 +117,7 @@ export default {
   },
 };
 
-function prepareFetchRequest(
-  request: Request,
-  reqHeaders: Headers
-): { headers: Headers; method: string; body?: BodyInit } {
-  const fetchRequest: { headers: Headers; method: string; body?: BodyInit } = {
-    method: request.method,
-    headers: new Headers(),
-  };
-
-  const headersToDelete = ["x-powered-by", "server", "via"];
-  for (let [key, value] of reqHeaders.entries()) {
-    if (!headersToDelete.includes(key.toLowerCase())) {
-      fetchRequest.headers.set(key, value);
-    }
-  }
-
-  if (["POST", "PUT", "PATCH", "DELETE"].includes(request.method)) {
-    const ct = (reqHeaders.get("content-type") || "").toLowerCase();
-    if (ct.includes("application/json")) {
-      fetchRequest.body = JSON.stringify(await request.json());
-    } else if (ct.includes("application/text") || ct.includes("text/html")) {
-      fetchRequest.body = await request.text();
-    } else if (ct.includes("form")) {
-      fetchRequest.body = await request.formData();
-    } else {
-      fetchRequest.body = await request.blob();
-    }
-  }
-
-  return fetchRequest;
-}
-
-function fixUrl(url: string): string {
+function fixUrl(url: string) {
   if (url.includes("://")) {
     return url;
   } else if (url.includes(":/")) {
