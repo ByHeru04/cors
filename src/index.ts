@@ -31,6 +31,7 @@ export default {
         "Referrer-Policy": "no-referrer",
         "Content-Security-Policy": "default-src 'self'; script-src 'none'; object-src 'none'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com",
         "Permissions-Policy": "geolocation=(), microphone=(), camera=()",
+        "Access-Control-Allow-Credentials": "true",
       }),
     };
 
@@ -106,7 +107,7 @@ function deleteHeaders(reqHeaders: Headers): { headers: Headers; method: string;
     headers: new Headers(),
   };
 
-  const headersToDelete = ["x-powered-by", "server", "content-security-policy", "content-security-policy-report-only", "clear-site-data"];
+  const headersToDelete = ["server", "content-security-policy", "content-security-policy-report-only", "clear-site-data"];
   for (let [key, value] of reqHeaders.entries()) {
     if (!headersToDelete.includes(key.toLowerCase())) {
       fetchRequest.headers.set(key, value);
