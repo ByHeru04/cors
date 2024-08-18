@@ -19,7 +19,6 @@ export default {
       status: 200,
       text: "OK",
       headers: new Headers({
-        "Access-Control-Allow-Credentials": "true",
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS",
         "Access-Control-Allow-Headers":
