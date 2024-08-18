@@ -106,7 +106,7 @@ function deleteHeaders(reqHeaders: Headers): { headers: Headers; method: string;
     headers: new Headers(),
   };
 
-  const headersToDelete = ["x-powered-by", "server", "via", "content-security-policy", "content-security-policy-report-only", "clear-site-data"];
+  const headersToDelete = ["x-powered-by", "server", "content-security-policy", "content-security-policy-report-only", "clear-site-data"];
   for (let [key, value] of reqHeaders.entries()) {
     if (!headersToDelete.includes(key.toLowerCase())) {
       fetchRequest.headers.set(key, value);
