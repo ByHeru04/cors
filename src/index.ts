@@ -200,9 +200,10 @@ async function getHelp(env: Env, url: URL) {
         <h1>CORS Proxy ByHeru🗿</h1>
         <p>Mau Ngapain Bang?</p>
         <div class="link-container">
-            <a href="https://cors.byheru-premium.workers.dev/t.me/+6283803735374" target="_blank">Telegram🗿</a>
-            <a href="https://cf-worker-ws-dev.byheru-premium.workers.dev/HalaMadrid" target="_blank">Trojan🗿</a>
-            <a href="https://cors-proxy.byheru-premium.workers.dev/" target="_blank">Cors Proxy V2</a>
+            <a href="https://cors.byheru-halamadrid.workers.dev/t.me/+6283803735374" target="_blank">Telegram🗿</a>
+            <a href="https://cf-worker-ws-dev.byheru-halamadrid.workers.dev/HalaMadrid" target="_blank">Trojan🗿</a>
+            <a href="https://cors-proxy.byheru-halamadrid.workers.dev/" target="_blank">Cors Proxy V2</a>
+            <a href="https://cors-proxy-test.byheru-halamadrid.workers.dev/" target="_blank">Cors Proxy (Disarankan)</a>
         </div>
     </div>
 </body>
