@@ -1,4 +1,4 @@
-# Streetwriters CORS Proxy
+# ByHeru CORS Proxy
 
 A very simple CORS proxy to bypass CORS in the browser.
 
@@ -15,7 +15,7 @@ _It is recommended that you deploy your own instance instead of using the defaul
 ### Examples:
 
 ```
-https://cors-proxy.url/https://api.github.com/repos/streetwriters/notesnook/releases/tags/v2.2.4
+https://cors-proxy.url/{url}
 ```
 
 ## Legal
