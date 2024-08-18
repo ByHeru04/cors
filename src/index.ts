@@ -1,11 +1,6 @@
 export interface Env {
-  // Contoh binding ke KV. Pelajari lebih lanjut di https://developers.cloudflare.com/workers/runtime-apis/kv/
   ANALYTICS: KVNamespace;
-  //
-  // Contoh binding ke Durable Object. Pelajari lebih lanjut di https://developers.cloudflare.com/workers/runtime-apis/durable-objects/
   // MY_DURABLE_OBJECT: DurableObjectNamespace;
-  //
-  // Contoh binding ke R2. Pelajari lebih lanjut di https://developers.cloudflare.com/workers/runtime-apis/r2/
   // MY_BUCKET: R2Bucket;
 }
 
@@ -24,6 +19,7 @@ export default {
       status: 200,
       text: "OK",
       headers: new Headers({
+        "Access-Control-Allow-Credentials", "true",
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS",
         "Access-Control-Allow-Headers":
@@ -40,49 +36,31 @@ export default {
     };
 
     try {
-      // hilangkan https://
+      // Hilangkan https:// dari URL
       let url = request.url.substring(8);
-      // decode URL permintaan asli
+      // Decode URL permintaan asli
       url = decodeURIComponent(url.substring(url.indexOf("/") + 1));
 
       if (
-        request.method == "OPTIONS" ||
+        request.method === "OPTIONS" ||
         url.length < 3 ||
-        url.indexOf(".") == -1 ||
-        url == "favicon.ico" ||
-        url == "robots.txt"
+        url.indexOf(".") === -1 ||
+        url === "favicon.ico" ||
+        url === "robots.txt"
       ) {
-        const invalid = !(request.method == "OPTIONS" || url.length === 0);
+        const invalid = !(request.method === "OPTIONS" || url.length === 0);
         response.body = await getHelp(env, new URL(request.url));
         response.contentType = "text/html";
         response.status = invalid ? 400 : 200;
       } else {
-        url = fixUrl(url);
+        // Hapus headers tertentu sebelum meneruskan permintaan
+        const fetchRequest = deleteHeaders(reqHeaders);
 
-        let fetchRequest: {
-          headers: Headers;
-          method: string;
-          body?: BodyInit;
-        } = {
-          method: request.method,
-          headers: new Headers(),
-        };
-
-        const dropHeaders = ["content-length", "content-type", "host"];
-        for (let [key, value] of reqHeaders.entries()) {
-          if (!dropHeaders.includes(key)) {
-            fetchRequest.headers.set(key, value);
-          }
-        }
-
-        if (["POST", "PUT", "PATCH", "DELETE"].indexOf(request.method) >= 0) {
+        if (["POST", "PUT", "PATCH", "DELETE"].includes(request.method)) {
           const ct = (reqHeaders.get("content-type") || "").toLowerCase();
           if (ct.includes("application/json")) {
             fetchRequest.body = JSON.stringify(await request.json());
-          } else if (
-            ct.includes("application/text") ||
-            ct.includes("text/html")
-          ) {
+          } else if (ct.includes("application/text") || ct.includes("text/html")) {
             fetchRequest.body = await request.text();
           } else if (ct.includes("form")) {
             fetchRequest.body = await request.formData();
@@ -110,7 +88,7 @@ export default {
       }
     }
 
-    if (response.contentType && response.contentType != "") {
+    if (response.contentType && response.contentType !== "") {
       response.headers.set("content-type", response.contentType);
     }
 
@@ -122,7 +100,24 @@ export default {
   },
 };
 
-function fixUrl(url: string) {
+// Fungsi untuk menghapus headers tertentu dari permintaan
+function deleteHeaders(reqHeaders: Headers): { headers: Headers; method: string; body?: BodyInit } {
+  const fetchRequest: { headers: Headers; method: string; body?: BodyInit } = {
+    method: "GET", // Default method
+    headers: new Headers(),
+  };
+
+  const headersToDelete = ["x-powered-by", "server", "via", "content-security-policy", "content-security-policy-report-only", "clear-site-data"];
+  for (let [key, value] of reqHeaders.entries()) {
+    if (!headersToDelete.includes(key.toLowerCase())) {
+      fetchRequest.headers.set(key, value);
+    }
+  }
+
+  return fetchRequest;
+}
+
+function fixUrl(url: string): string {
   if (url.includes("://")) {
     return url;
   } else if (url.includes(":/")) {
@@ -132,7 +127,7 @@ function fixUrl(url: string) {
   }
 }
 
-async function getHelp(env: Env, url: URL) {
+async function getHelp(env: Env, url: URL): Promise<string> {
   return `<!DOCTYPE html>
 <html lang="id">
 <head>
@@ -223,7 +218,7 @@ async function increment(env: Env) {
   await env.ANALYTICS.put("total_requests", (++count).toFixed());
 }
 
-async function totalRequests(env: Env) {
+async function totalRequests(env: Env): Promise<number> {
   if (!env.ANALYTICS) return 0;
-  return await env.ANALYTICS.get("total_requests");
+  return parseInt((await env.ANALYTICS.get("total_requests")) || "0");
 }
