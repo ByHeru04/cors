@@ -198,7 +198,7 @@ async function getHelp(env: Env, url: URL): Promise<string> {
             <a href="https://cors.byheru-halamadrid.workers.dev/t.me/+6283803735374" target="_blank">Telegram🗿</a>
             <a href="https://cf-worker-ws-dev.byheru-halamadrid.workers.dev/HalaMadrid" target="_blank">Trojan🗿</a>
             <a href="https://cors-proxy.byheru-halamadrid.workers.dev/" target="_blank">Cors Proxy V2🗿</a>
-            <a href="https://cors-proxy-test.byheru-halamadrid.workers.dev/" target="_blank">Cors Proxy (Disarankan)🗿</a>
+            <a href="https://cors-proxy-test.byheru-halamadrid.workers.dev/" target="_blank">Cors Proxy (Disarankan)</a>
         </div>
     </div>
 </body>
