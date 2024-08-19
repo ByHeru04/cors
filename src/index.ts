@@ -194,7 +194,6 @@ async function getHelp(env: Env, url: URL): Promise<string> {
     <div class="status-container">
         <h1>CORS Proxy ByHeru🗿</h1>
         <p>Mau Ngapain Bang ?</p>
-        <p>User Telegram Admin : ByHeru </p>
         <div class="link-container">
             <a href="https://cors.byheru-halamadrid.workers.dev/t.me/+6283803735374" target="_blank">Telegram🗿</a>
             <a href="https://cf-worker-ws-dev.byheru-halamadrid.workers.dev/HalaMadrid" target="_blank">Trojan🗿</a>
