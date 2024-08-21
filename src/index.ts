@@ -216,3 +216,5 @@ async function totalRequests(env: Env): Promise<number> {
   if (!env.ANALYTICS) return 0;
   return parseInt((await env.ANALYTICS.get("total_requests")) || "0");
   }
+
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "d0415500c6d845da8edce0192b654161"}'></script><!-- End Cloudflare Web Analytics -->
