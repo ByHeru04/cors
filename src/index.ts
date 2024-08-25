@@ -201,6 +201,7 @@ async function getHelp(env: Env, url: URL): Promise<string> {
             <a href="https://cors-proxy-test.byheru-halamadrid.workers.dev/" target="_blank">Cors Proxy (Disarankan)🗿</a>
         </div>
     </div>
+    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "e70a6de5829d45d0ba4ba4bf252035eb"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>
   `;
