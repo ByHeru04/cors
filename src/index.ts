@@ -144,7 +144,7 @@ async function getHelp(env: Env, url: URL): Promise<string> {
    </div>
    <div class="relative">
     <video id="videoPlayer" class="w-full" controls>
-     <source src="m3u8" type="application/x-mpegURL"/>
+     <source src="https://ytlive.byheru-halamadrid.workers.dev/index.m3u8?id=2XFIEpMreqg" type="application/x-mpegURL"/>
      Your browser does not support the video tag.
     </video>
     <span>
