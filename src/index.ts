@@ -177,7 +177,7 @@ async function getHelp(env: Env, url: URL): Promise<string> {
    }
   </script>
  </body>
-</html>;
+</html>`;
 }
 
 async function increment(env: Env) {
