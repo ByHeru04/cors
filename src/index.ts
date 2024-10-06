@@ -127,7 +127,7 @@ async function getHelp(env: Env, url: URL): Promise<string> {
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>
-   ByHeru
+   Video Only
   </title>
   <script src="https://cdn.tailwindcss.com">
   </script>
@@ -140,35 +140,44 @@ async function getHelp(env: Env, url: URL): Promise<string> {
      <i class="fas fa-arrow-left">
      </i>
      <span>
-      SPOTV LIVE BY HERU VIPS
+      Sriwijaya FC vs Persikabo 1973, Liga 2 siaran langsung olahraga
      </span>
     </div>
    </div>
    <div class="relative">
-    <video class="w-full" controls>
-     <source src="https://cdn09jtedge.indihometv.com/joss/133/beib1/index.m3u8" type="application/x-mpegURL"/>
+    <video id="videoPlayer" class="w-full" controls>
+     <source src="https://cors.byheru-halamadrid.workers.dev/" type="application/x-mpegURL"/>
      Your browser does not support the video tag.
     </video>
     <div class="absolute bottom-0 left-0 p-2 bg-black bg-opacity-50 w-full flex items-center justify-between">
      <div class="flex items-center space-x-2">
-      <i class="fas fa-play">
-      </i>
       <span>
-       Spider-Man: Far From Home
+       ByHeru
       </span>
-     </div>
-     <div class="flex items-center space-x-2">
-      <i class="fas fa-volume-up">
-      </i>
-      <i class="fas fa-expand">
-      </i>
      </div>
     </div>
    </div>
+   <div class="bg-gray-800 p-2 flex items-center justify-around">
+    <button class="bg-blue-500 text-white p-2 rounded" onclick="changeSource('https://path/to/your/video1.m3u8')">
+     Server 1
+    </button>
+    <button class="bg-blue-500 text-white p-2 rounded" onclick="changeSource('https://path/to/your/video2.m3u8')">
+     Server 2
+    </button>
+    <button class="bg-blue-500 text-white p-2 rounded" onclick="changeSource('https://path/to/your/video3.m3u8')">
+     Server 3
+    </button>
+   </div>
   </div>
+  <script>
+   function changeSource(source) {
+     const videoPlayer = document.getElementById('videoPlayer');
+     videoPlayer.src = source;
+     videoPlayer.play();
+   }
+  </script>
  </body>
-</html>
-  `;
+</html>;
 }
 
 async function increment(env: Env) {
