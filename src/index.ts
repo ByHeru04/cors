@@ -158,13 +158,13 @@ async function getHelp(env: Env, url: URL): Promise<string> {
     </div>
    </div>
    <div class="bg-gray-800 p-2 flex items-center justify-around">
-    <button class="bg-blue-500 text-white p-2 rounded" onclick="changeSource('https://path/to/your/video1.m3u8')">
+    <button class="bg-blue-500 text-white p-2 rounded" onclick="changeSource('https://cdn09jtedge.indihometv.com/joss/133/beib1/index.m3u8')">
      Server 1
     </button>
-    <button class="bg-blue-500 text-white p-2 rounded" onclick="changeSource('https://path/to/your/video2.m3u8')">
+    <button class="bg-blue-500 text-white p-2 rounded" onclick="changeSource('https://cdn09jtedge.indihometv.com/joss/133/beib2/index.m3u8')">
      Server 2
     </button>
-    <button class="bg-blue-500 text-white p-2 rounded" onclick="changeSource('https://path/to/your/video3.m3u8')">
+    <button class="bg-blue-500 text-white p-2 rounded" onclick="changeSource('https://dsgtq5sngxkde.cloudfront.net/live/eds/rcti-sportstar2/sa_hls/rcti-sportstar2.m3u8?c')">
      Server 3
     </button>
    </div>
