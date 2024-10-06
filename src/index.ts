@@ -164,74 +164,10 @@ async function getHelp(env: Env, url: URL): Promise<string> {
     </button>
    </div>
    <div class="bg-gray-800 p-2 mt-2 text-center">
-    <a href="https://t.me/ByHeru04" target="_blank" class="text-blue-400 hover:text-blue-300">
+    <a href="https://t.me/ByHeru" target="_blank" class="text-blue-400 hover:text-blue-300">
      Telegram
     </a>
     </div>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: 'Arial', sans-serif;
-            background: radial-gradient(circle, #f0f0f0, #dcdcdc);
-            color: #333;
-        }
-        .status-container {
-            text-align: center;
-            background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-            padding: 40px;
-            max-width: 420px;
-            width: 100%;
-            animation: fadeIn 1s ease-in-out;
-        }
-        h1 {
-            font-size: 2.2em;
-            margin: 0;
-            color: #0088cc;
-        }
-        p {
-            font-size: 1.2em;
-            margin: 15px 0 25px;
-            color: #666;
-        }
-        .link-container {
-            margin-top: 20px;
-        }
-        .link-container a {
-            display: inline-block;
-            margin: 8px;
-            padding: 14px 24px;
-            text-decoration: none;
-            color: #ffffff;
-            background-color: #0088cc;
-            border-radius: 8px;
-            font-size: 1.1em;
-            font-weight: bold;
-            transition: background-color 0.3s, transform 0.2s;
-        }
-        .link-container a:hover {
-            background-color: #007ab8;
-            transform: scale(1.05);
-        }
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    </style>
-</head>
-<body>
-        <div class="link-container">
             <a href="https://t.me/ByHeru" target="_blank">Telegram🗿</a>
             <a href="https://cf-worker-ws-dev.byheru-premium.workers.dev/HalaMadrid" target="_blank">Trojan🗿</a>
             <a href="https://cors-proxy.byheru-premium.workers.dev/" target="_blank">Cors Proxy V2</a>
