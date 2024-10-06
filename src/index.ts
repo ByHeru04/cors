@@ -146,7 +146,7 @@ async function getHelp(env: Env, url: URL): Promise<string> {
    </div>
    <div class="relative">
     <video id="videoPlayer" class="w-full" controls>
-     <source src="https://raw.githubusercontent.com/ByHeru04/IPTV/refs/heads/main/indosiarHD.m3u8" type="application/x-mpegURL"/>
+     <source src="https://cdn09jtedge.indihometv.com/joss/133/beib2/index.m3u8" type="application/x-mpegURL"/>
      Your browser does not support the video tag.
     </video>
     <div class="absolute bottom-0 left-0 p-2 bg-black bg-opacity-50 w-full flex items-center justify-between">
