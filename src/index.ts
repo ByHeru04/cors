@@ -140,7 +140,7 @@ async function getHelp(env: Env, url: URL): Promise<string> {
      <i class="fas fa-arrow-left">
      </i>
      <span>
-      Sriwijaya FC vs Persikabo 1973, Liga 2 siaran langsung olahraga
+      HalaMadrid
      </span>
     </div>
    </div>
