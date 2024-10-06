@@ -163,7 +163,11 @@ async function getHelp(env: Env, url: URL): Promise<string> {
      Server 3
     </button>
    </div>
-  </div>
+   <div class="bg-gray-800 p-2 mt-2 text-center">
+    <a href="https://t.me/ByHeru04" target="_blank" class="text-blue-400 hover:text-blue-300">
+     Telegram 🗿
+    </a>
+   </div>
   <script>
    function changeSource(source) {
      const videoPlayer = document.getElementById('videoPlayer');
