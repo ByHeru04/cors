@@ -137,8 +137,6 @@ async function getHelp(env: Env, url: URL): Promise<string> {
   <div class="relative">
    <div class="bg-gray-800 p-2">
     <div class="flex items-center space-x-2">
-     <i class="fas fa-arrow-left">
-     </i>
      <span>
       HalaMadrid
      </span>
@@ -146,7 +144,7 @@ async function getHelp(env: Env, url: URL): Promise<string> {
    </div>
    <div class="relative">
     <video id="videoPlayer" class="w-full" controls>
-     <source src="https://cdn09jtedge.indihometv.com/joss/133/beib2/index.m3u8" type="application/x-mpegURL"/>
+     <source src="m3u8" type="application/x-mpegURL"/>
      Your browser does not support the video tag.
     </video>
     <span>
@@ -155,13 +153,13 @@ async function getHelp(env: Env, url: URL): Promise<string> {
     </div>
    </div>
    <div class="bg-gray-800 p-2 flex items-center justify-around">
-    <button class="bg-blue-500 text-white p-2 rounded" onclick="changeSource('https://cdn09jtedge.indihometv.com/joss/133/beib1/index.m3u8')">
+    <button class="bg-blue-500 text-white p-2 rounded" onclick="changeSource('m3u8')">
      Server 1
     </button>
-    <button class="bg-blue-500 text-white p-2 rounded" onclick="changeSource('https://cdn09jtedge.indihometv.com/joss/133/beib2/index.m3u8')">
+    <button class="bg-blue-500 text-white p-2 rounded" onclick="changeSource('m3u8')">
      Server 2
     </button>
-    <button class="bg-blue-500 text-white p-2 rounded" onclick="changeSource('https://dsgtq5sngxkde.cloudfront.net/live/eds/rcti-sportstar2/sa_hls/rcti-sportstar2.m3u8?c')">
+    <button class="bg-blue-500 text-white p-2 rounded" onclick="changeSource('m3u8')">
      Server 3
     </button>
    </div>
