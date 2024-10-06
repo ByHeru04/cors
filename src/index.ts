@@ -127,7 +127,7 @@ async function getHelp(env: Env, url: URL): Promise<string> {
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>
-   Video Only
+   ByHeru
   </title>
   <script src="https://cdn.tailwindcss.com">
   </script>
