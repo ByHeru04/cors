@@ -164,13 +164,14 @@ async function getHelp(env: Env, url: URL): Promise<string> {
     </button>
    </div>
    <div class="bg-gray-800 p-2 mt-2 text-center">
+    <a href="https://wa.me/6283803735374" target="_blank" class="text-blue-400 hover:text-blue-300">
+     WhatsApp
+    </a>
+    </div>
+    <div class="bg-gray-800 p-2 mt-2 text-center">
     <a href="https://t.me/ByHeru" target="_blank" class="text-blue-400 hover:text-blue-300">
      Telegram
     </a>
-    </div>
-            <a href="https://t.me/ByHeru" target="_blank">Telegram🗿</a>
-            <a href="https://cf-worker-ws-dev.byheru-premium.workers.dev/HalaMadrid" target="_blank">Trojan🗿</a>
-            <a href="https://cors-proxy.byheru-premium.workers.dev/" target="_blank">Cors Proxy V2</a>
    </div>
   <script>
    function changeSource(source) {
