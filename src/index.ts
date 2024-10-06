@@ -122,86 +122,51 @@ function fixUrl(url: string) {
 }
 
 async function getHelp(env: Env, url: URL): Promise<string> {
-  return `<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CORS Proxy ByHeru🗿</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #fdfbfb, #ebedee);
-            color: #333;
-        }
-        .status-container {
-            text-align: center;
-            background-color: #ffffff;
-            border-radius: 15px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-            padding: 50px;
-            max-width: 450px;
-            width: 100%;
-            animation: fadeIn 1s ease-in-out;
-        }
-        h1 {
-            font-size: 2.5em;
-            margin: 0;
-            color: #007BFF;
-        }
-        p {
-            font-size: 1.3em;
-            margin: 20px 0 30px;
-            color: #555;
-        }
-        .link-container {
-            margin-top: 25px;
-        }
-        .link-container a {
-            display: inline-block;
-            margin: 10px;
-            padding: 16px 28px;
-            text-decoration: none;
-            color: #fff;
-            background-color: #007BFF;
-            border-radius: 8px;
-            font-size: 1.2em;
-            font-weight: bold;
-            transition: background-color 0.3s, transform 0.2s;
-        }
-        .link-container a:hover {
-            background-color: #0056b3;
-            transform: scale(1.05);
-        }
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="status-container">
-        <h1>CORS Proxy ByHeru🗿</h1>
-        <p>Mau Ngapain Bang ?</p>
-        <div class="link-container">
-            <a href="https://cors.byheru-halamadrid.workers.dev/t.me/ByHeru" target="_blank">Telegram🗿</a>
-            <a href="https://cf-worker-ws-dev.byheru-halamadrid.workers.dev/HalaMadrid" target="_blank">Trojan🗿</a>
-            <a href="https://cors-proxy.byheru-halamadrid.workers.dev/" target="_blank">Cors Proxy V2🗿</a>
-            <a href="https://cors-proxy-test.byheru-halamadrid.workers.dev/" target="_blank">Cors Proxy (Disarankan)🗿</a>
-        </div>
+  return `<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Video Only
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+ </head>
+ <body class="bg-black text-white">
+  <div class="relative">
+   <div class="bg-gray-800 p-2">
+    <div class="flex items-center space-x-2">
+     <i class="fas fa-arrow-left">
+     </i>
+     <span>
+      SPOTV LIVE BY HERU VIPS
+     </span>
     </div>
-</body>
+   </div>
+   <div class="relative">
+    <video class="w-full" controls>
+     <source src="https://cdn09jtedge.indihometv.com/joss/133/beib1/index.m3u8" type="application/x-mpegURL"/>
+     Your browser does not support the video tag.
+    </video>
+    <div class="absolute bottom-0 left-0 p-2 bg-black bg-opacity-50 w-full flex items-center justify-between">
+     <div class="flex items-center space-x-2">
+      <i class="fas fa-play">
+      </i>
+      <span>
+       Spider-Man: Far From Home
+      </span>
+     </div>
+     <div class="flex items-center space-x-2">
+      <i class="fas fa-volume-up">
+      </i>
+      <i class="fas fa-expand">
+      </i>
+     </div>
+    </div>
+   </div>
+  </div>
+ </body>
 </html>
   `;
 }
