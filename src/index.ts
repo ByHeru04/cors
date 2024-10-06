@@ -165,7 +165,11 @@ async function getHelp(env: Env, url: URL): Promise<string> {
    </div>
    <div class="bg-gray-800 p-2 mt-2 text-center">
     <a href="https://t.me/ByHeru04" target="_blank" class="text-blue-400 hover:text-blue-300">
-     Telegram 🗿
+     Telegram
+    </a>
+    </div>
+    <a href="https://wa.me/6283803735374" target="_blank" class="text-blue-400 hover:text-blue-300">
+     WhatsApp
     </a>
    </div>
   <script>
