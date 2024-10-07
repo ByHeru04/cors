@@ -138,7 +138,7 @@ async function getHelp(env: Env, url: URL): Promise<string> {
    <div class="bg-gray-800 p-2">
     <div class="flex items-center space-x-2">
      <span>
-      HalaMadrid
+      ByHeru
      </span>
     </div>
    </div>
