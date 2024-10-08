@@ -172,7 +172,7 @@ async function getHelp(env: Env, url: URL): Promise<string> {
   <div class="flex justify-between items-center p-2 bg-gray-800 mt-4">
    <div class="flex items-center space-x-2">
     <button class="bg-red-600 px-2 py-1 rounded" id="time">
-     ㅤ
+    00:00:00 WIBㅤ
     </button>
     <span>
      ByHeru
@@ -181,7 +181,7 @@ async function getHelp(env: Env, url: URL): Promise<string> {
   </div>
   <div class="flex justify-around bg-gray-900 p-2">
    <button class="bg-gray-700 px-4 py-2 rounded">
-    EVENT
+    LIVE EVENT
    </button>
   </div>
   <div class="p-4">
