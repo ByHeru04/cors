@@ -122,7 +122,7 @@ function fixUrl(url: string) {
 }
 
 async function getHelp(env: Env, url: URL): Promise<string> {
-  return `<<html lang="en">
+  return `<html lang="en">
  <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
