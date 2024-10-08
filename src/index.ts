@@ -174,18 +174,6 @@ async function getHelp(env: Env, url: URL): Promise<string> {
     <button class="bg-red-600 px-2 py-1 rounded" id="time">
     00:00:00 WIBㅤ
     </button>
-    <span>
-     ByHeru
-    </span>
-   </div>
-  </div>
-  <div class="flex justify-around bg-gray-900 p-2">
-   <button class="bg-gray-700 px-4 py-2 rounded">
-    LIVE EVENT
-   </button>
-  </div>
-  <div class="p-4">
-   <div class="bg-gray-700 p-2 rounded mb-2">
 <html lang="en">
  <head>
   <meta charset="utf-8"/>
@@ -219,33 +207,7 @@ async function getHelp(env: Env, url: URL): Promise<string> {
    <div class="bg-gray-800 p-2 flex items-center justify-around">
     <button class="bg-blue-500 text-white p-2 rounded" onclick="changeSource('m3u8')">
      Server 1
-    </button>
-    <button class="bg-blue-500 text-white p-2 rounded" onclick="changeSource('m3u8')">
-     Server 2
-    </button>
-    <button class="bg-blue-500 text-white p-2 rounded" onclick="changeSource('m3u8')">
-     Server 3
-    </button>
-   </div>
-   <div class="bg-gray-800 p-2 mt-2 text-center">
-    <a href="https://cors-proxy-test.byheru-halamadrid.workers.dev/" target="_blank" class="text-blue-400 hover:text-blue-300">
-     Cors Proxy ByHeru
-    </a>
-    </div>
-    <div class="bg-gray-800 p-2 mt-2 text-center">
-    <a href="https://t.me/ByHeru" target="_blank" class="text-blue-400 hover:text-blue-300">
-     Chat Telegram
-    </a>
-   </div>
-  <script>
-   function changeSource(source) {
-     const videoPlayer = document.getElementById('videoPlayer');
-     videoPlayer.src = source;
-     videoPlayer.play();
-   }
-  </script>
- </body>
-</html>`;
+>`;
 }
 
 async function increment(env: Env) {
