@@ -165,7 +165,7 @@ async function getHelp(env: Env, url: URL): Promise<string> {
   </div>
   <div class="flex justify-center items-center h-64 mt-4">
    <video controls class="w-full" id="main-video">
-    <source src="https://enx.gdplayertv.to/live-tv/tnt-sports-1?embed=1"/>
+    <source src="https://ytlive.byheru-halamadrid.workers.dev/index.m3u8?id=pCaYl6vS7_I" type="application/x-mpegURL"/>
     Your browser does not support the video tag.
    </video>
   </div>
@@ -186,55 +186,64 @@ async function getHelp(env: Env, url: URL): Promise<string> {
   </div>
   <div class="p-4">
    <div class="bg-gray-700 p-2 rounded mb-2">
-    <span class="font-bold">
-     LIVE EVENT
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   ByHeru
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+ </head>
+ <body class="bg-black text-white">
+  <div class="relative">
+   <div class="bg-gray-800 p-2">
+    <div class="flex items-center space-x-2">
+     <span>
+      ByHeru
+     </span>
+    </div>
+   </div>
+   <div class="relative">
+    <video id="videoPlayer" class="w-full" controls>
+     <source src="https://ytlive.byheru-halamadrid.workers.dev/index.m3u8?id=pCaYl6vS7_I" type="application/x-mpegURL"/>
+     Your browser does not support the video tag.
+    </video>
+    <span>
     </span>
-    | 🗿
-   </div>
-   <div class="bg-gray-800 p-2 rounded mb-2 cursor-pointer" onclick="changeVideo('Ubah Bagian ini.m3u8')">
-    <div class="flex justify-between">
-     <div>
-      <span class="font-bold">
-       20 OKTOBER 2024
-      </span>
-      <br/>
-      <span>
-       Real Madrid
-      </span>
-      <br/>
-      <span>
-       Celta
-      </span>
-     </div>
-     <div class="text-right">
-      <span>
-       02:00 WIB
-      </span>
      </div>
     </div>
    </div>
-   <div class="bg-gray-800 p-2 rounded mb-2 cursor-pointer" onclick="changeVideo('Ubah Bagian Ini.m3u8')">
-    <div class="flex justify-between">
-     <div>
-      <span class="font-bold">
-       19 OKTOBER 2024
-      </span>
-      <br/>
-      <span>
-       Al-Nassr
-      </span>
-      <br/>
-      <span>
-       Al Shabab
-      </span>
-     </div>
-     <div class="text-right">
-      <span>
-       02:00 WIB
-      </span>
-     </div>
-    </div>
+   <div class="bg-gray-800 p-2 flex items-center justify-around">
+    <button class="bg-blue-500 text-white p-2 rounded" onclick="changeSource('m3u8')">
+     Server 1
+    </button>
+    <button class="bg-blue-500 text-white p-2 rounded" onclick="changeSource('m3u8')">
+     Server 2
+    </button>
+    <button class="bg-blue-500 text-white p-2 rounded" onclick="changeSource('m3u8')">
+     Server 3
+    </button>
    </div>
+   <div class="bg-gray-800 p-2 mt-2 text-center">
+    <a href="https://cors-proxy-test.byheru-halamadrid.workers.dev/" target="_blank" class="text-blue-400 hover:text-blue-300">
+     Cors Proxy ByHeru
+    </a>
+    </div>
+    <div class="bg-gray-800 p-2 mt-2 text-center">
+    <a href="https://t.me/ByHeru" target="_blank" class="text-blue-400 hover:text-blue-300">
+     Chat Telegram
+    </a>
+   </div>
+  <script>
+   function changeSource(source) {
+     const videoPlayer = document.getElementById('videoPlayer');
+     videoPlayer.src = source;
+     videoPlayer.play();
+   }
+  </script>
  </body>
 </html>`;
 }
