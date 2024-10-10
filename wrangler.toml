@@ -3,5 +3,5 @@ main = "src/index.ts"
 compatibility_date = "2022-11-24"
 
 kv_namespaces = [
-    { binding = "ANALYTICS", id = "24175492bf1e468cb414b494e65aea8d", preview_id = "24175492bf1e468cb414b494e65aea8d" },
+    { binding = "ANALYTICS", id = "142eb75c180c409c9e1d04bb496ef0a0", preview_id = "142eb75c180c409c9e1d04bb496ef0a0" },
 ]
