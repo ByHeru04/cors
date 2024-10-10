@@ -128,84 +128,61 @@ function fixUrl(url: string) {
 }
 
 async function getHelp(env: Env, url: URL) {
-  return `<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CORS Proxy ByHeru🗿</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: 'Arial', sans-serif;
-            background: radial-gradient(circle, #f0f0f0, #dcdcdc);
-            color: #333;
-        }
-        .status-container {
-            text-align: center;
-            background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-            padding: 40px;
-            max-width: 420px;
-            width: 100%;
-            animation: fadeIn 1s ease-in-out;
-        }
-        h1 {
-            font-size: 2.2em;
-            margin: 0;
-            color: #0088cc;
-        }
-        p {
-            font-size: 1.2em;
-            margin: 15px 0 25px;
-            color: #666;
-        }
-        .link-container {
-            margin-top: 20px;
-        }
-        .link-container a {
-            display: inline-block;
-            margin: 8px;
-            padding: 14px 24px;
-            text-decoration: none;
-            color: #ffffff;
-            background-color: #0088cc;
-            border-radius: 8px;
-            font-size: 1.1em;
-            font-weight: bold;
-            transition: background-color 0.3s, transform 0.2s;
-        }
-        .link-container a:hover {
-            background-color: #007ab8;
-            transform: scale(1.05);
-        }
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    </style>
-</head>
-<body>
-        <div class="status-container">
-        <h1>CORS ByHeru🗿</h1>
-        <div class="link-container">
-            <a href="https://t.me/ByHeru" target="_blank">Chat Telegram</a>
-        </div>
+  return `<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   ByHeru🗿
+  </title>
+  <script src="https://cdn.tailwindcss.com">
+  </script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+ </head>
+ <body class="bg-black text-white">
+  <div class="relative">
+   <div class="bg-gray-800 p-2">
+    <div class="flex items-center space-x-2">
+     <span>
+      INDONESIA VS BAHRAIN 22:00 WIB LIVE
+     </span>
     </div>
-</body>
-</html>
-  `;
+   </div>
+   <div class="relative">
+    <video id="videoPlayer" class="w-full" controls>
+     <source src="https://ytlive.byheru-halamadrid.workers.dev/index.m3u8?id=pCaYl6vS7_I" type="application/x-mpegURL"/>
+     Your browser does not support the video tag.
+    </video>
+    <span>
+    </span>
+     </div>
+    </div>
+   </div>
+   <div class="bg-gray-800 p-2 flex items-center justify-around">
+    <button class="bg-blue-500 text-white p-2 rounded" onclick="changeSource('m3u8')">
+     Server 1
+    </button>
+    <button class="bg-blue-500 text-white p-2 rounded" onclick="changeSource('m3u8')">
+     Server 2
+    </button>
+    <button class="bg-blue-500 text-white p-2 rounded" onclick="changeSource('m3u8')">
+     Server 3
+    </button>
+   </div>
+   <div class="bg-gray-800 p-2 mt-2 text-center">
+    <a href="https://t.me/ByHeru" target="_blank" class="text-blue-400 hover:text-blue-300">
+     Chat Telegram
+    </a>
+   </div>
+  <script>
+   function changeSource(source) {
+     const videoPlayer = document.getElementById('videoPlayer');
+     videoPlayer.src = source;
+     videoPlayer.play();
+   }
+  </script>
+ </body>
+</html>`;
 }
 
 async function increment(env: Env) {
