@@ -122,66 +122,19 @@ function fixUrl(url: string) {
 }
 
 async function getHelp(env: Env, url: URL): Promise<string> {
-  return `<html lang="en">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>
-   ByHeru
-  </title>
-  <script src="https://cdn.tailwindcss.com">
-  </script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
- </head>
- <body class="bg-black text-white">
-  <div class="relative">
-   <div class="bg-gray-800 p-2">
-    <div class="flex items-center space-x-2">
-     <span>
-      ByHeru
-     </span>
-    </div>
-   </div>
-   <div class="relative">
-    <video id="videoPlayer" class="w-full" controls>
-     <source src="https://ytlive.byheru-halamadrid.workers.dev/index.m3u8?id=pCaYl6vS7_I" type="application/x-mpegURL"/>
-     Your browser does not support the video tag.
-    </video>
-    <span>
-    </span>
-     </div>
-    </div>
-   </div>
-   <div class="bg-gray-800 p-2 flex items-center justify-around">
-    <button class="bg-blue-500 text-white p-2 rounded" onclick="changeSource('m3u8')">
-     Server 1
-    </button>
-    <button class="bg-blue-500 text-white p-2 rounded" onclick="changeSource('m3u8')">
-     Server 2
-    </button>
-    <button class="bg-blue-500 text-white p-2 rounded" onclick="changeSource('m3u8')">
-     Server 3
-    </button>
-   </div>
-   <div class="bg-gray-800 p-2 mt-2 text-center">
-    <a href="https://cors-proxy-test.byheru-halamadrid.workers.dev/" target="_blank" class="text-blue-400 hover:text-blue-300">
-     Cors Proxy ByHeru
-    </a>
-    </div>
-    <div class="bg-gray-800 p-2 mt-2 text-center">
-    <a href="https://t.me/ByHeru" target="_blank" class="text-blue-400 hover:text-blue-300">
-     Chat Telegram
-    </a>
-   </div>
-  <script>
-   function changeSource(source) {
-     const videoPlayer = document.getElementById('videoPlayer');
-     videoPlayer.src = source;
-     videoPlayer.play();
-   }
-  </script>
- </body>
-</html>`;
+  return `<!DOCTYPE html>
+<html style="height:100%">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<title> 404 Not Found
+</title></head>
+<body style="color: #444; margin:0;font: normal 14px/20px Arial, Helvetica, sans-serif; height:100%; background-color: #fff;">
+<div style="height:auto; min-height:100%; ">     <div style="text-align: center; width:800px; margin-left: -400px; position:absolute; top: 30%; left:50%;">
+        <h1 style="margin:0; font-size:150px; line-height:150px; font-weight:bold;">404</h1>
+<h2 style="margin-top:20px;font-size: 30px;">Not Found
+</h2>
+<p>The resource requested could not be found on this server!</p>
+</div></div></body></html>`;
 }
 
 async function increment(env: Env) {
