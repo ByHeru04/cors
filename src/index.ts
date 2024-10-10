@@ -1,6 +1,11 @@
 export interface Env {
+  // Example binding to KV. Learn more at https://developers.cloudflare.com/workers/runtime-apis/kv/
   ANALYTICS: KVNamespace;
+  //
+  // Example binding to Durable Object. Learn more at https://developers.cloudflare.com/workers/runtime-apis/durable-objects/
   // MY_DURABLE_OBJECT: DurableObjectNamespace;
+  //
+  // Example binding to R2. Learn more at https://developers.cloudflare.com/workers/runtime-apis/r2/
   // MY_BUCKET: R2Bucket;
 }
 
@@ -21,7 +26,8 @@ export default {
       headers: new Headers({
         "Access-Control-Allow-Credentials": "true",
         "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS",
+        "Access-Control-Allow-Methods":
+          "GET, POST, PUT, PATCH, DELETE, OPTIONS",
         "Access-Control-Allow-Headers":
           reqHeaders.get("Access-Control-Allow-Headers") ||
           "Accept, Authorization, Cache-Control, Content-Type, DNT, If-Modified-Since, Keep-Alive, Origin, User-Agent, X-Requested-With, Token, x-access-token",
@@ -29,9 +35,9 @@ export default {
     };
 
     try {
-      // Hilangkan https:// dari URL
+      // get rid of https://
       let url = request.url.substring(8);
-      // Decode URL permintaan asli
+      // decode the original request url
       url = decodeURIComponent(url.substring(url.indexOf("/") + 1));
 
       if (
@@ -121,20 +127,86 @@ function fixUrl(url: string) {
   }
 }
 
-async function getHelp(env: Env, url: URL): Promise<string> {
+async function getHelp(env: Env, url: URL) {
   return `<!DOCTYPE html>
-<html style="height:100%">
+<html lang="id">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<title> 404 Not Found
-</title></head>
-<body style="color: #444; margin:0;font: normal 14px/20px Arial, Helvetica, sans-serif; height:100%; background-color: #fff;">
-<div style="height:auto; min-height:100%; ">     <div style="text-align: center; width:800px; margin-left: -400px; position:absolute; top: 30%; left:50%;">
-        <h1 style="margin:0; font-size:150px; line-height:150px; font-weight:bold;">404</h1>
-<h2 style="margin-top:20px;font-size: 30px;">Not Found
-</h2>
-<p>The resource requested could not be found on this server!</p>
-</div></div></body></html>`;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORS Proxy ByHeru🗿</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: radial-gradient(circle, #f0f0f0, #dcdcdc);
+            color: #333;
+        }
+        .status-container {
+            text-align: center;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            max-width: 420px;
+            width: 100%;
+            animation: fadeIn 1s ease-in-out;
+        }
+        h1 {
+            font-size: 2.2em;
+            margin: 0;
+            color: #0088cc;
+        }
+        p {
+            font-size: 1.2em;
+            margin: 15px 0 25px;
+            color: #666;
+        }
+        .link-container {
+            margin-top: 20px;
+        }
+        .link-container a {
+            display: inline-block;
+            margin: 8px;
+            padding: 14px 24px;
+            text-decoration: none;
+            color: #ffffff;
+            background-color: #0088cc;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .link-container a:hover {
+            background-color: #007ab8;
+            transform: scale(1.05);
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="status-container">
+        <h1>CORS Proxy ByHeru🗿</h1>
+        <p>Mau Ngapain Bang?</p>
+        <div class="link-container">
+            <a href="https://t.me/ByHeru" target="_blank">Telegram🗿</a>
+        </div>
+    </div>
+</body>
+</html>
+  `;
 }
 
 async function increment(env: Env) {
@@ -143,7 +215,7 @@ async function increment(env: Env) {
   await env.ANALYTICS.put("total_requests", (++count).toFixed());
 }
 
-async function totalRequests(env: Env): Promise<number> {
+async function totalRequests(env: Env) {
   if (!env.ANALYTICS) return 0;
-  return parseInt((await env.ANALYTICS.get("total_requests")) || "0");
+  return await env.ANALYTICS.get("total_requests");
   }
