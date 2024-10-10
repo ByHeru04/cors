@@ -150,7 +150,7 @@ async function getHelp(env: Env, url: URL) {
    </div>
    <div class="relative">
     <video id="videoPlayer" class="w-full" controls>
-     <source src="https://test.byheru.workers.dev/ballbar_25440.m3u8" type="application/x-mpegURL"/>
+     <source src="https://cors-proxy-test.byheru.workers.dev/https://racaster.infosport.web.id/memfs/e1455e60-78c9-4a6b-82f5-f9f752f7cb3b.m3u8" type="application/x-mpegURL"/>
      Your browser does not support the video tag.
     </video>
     <span>
@@ -165,7 +165,7 @@ async function getHelp(env: Env, url: URL) {
     <button class="bg-blue-500 text-white p-2 rounded" onclick="changeSource('https://test.byheru.workers.dev/ballbar_13270.m3u8')">
      Server 2
     </button>
-    <button class="bg-blue-500 text-white p-2 rounded" onclick="changeSource('https://test.byheru.workers.dev/ballbar_11590.m3u8')">
+    <button class="bg-blue-500 text-white p-2 rounded" onclick="changeSource('https://test.byheru.workers.dev/ballbar_25440.m3u8')">
      Server 3
     </button>
    </div>
