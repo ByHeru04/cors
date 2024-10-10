@@ -144,7 +144,7 @@ async function getHelp(env: Env, url: URL) {
    <div class="bg-gray-800 p-2">
     <div class="flex items-center space-x-2">
      <span>
-      INDONESIA VS BAHRAIN 22:00 WIB LIVE
+      LIVE STREAMING INDONESIA VS BAHRAIN 22:00 WIB
      </span>
     </div>
    </div>
