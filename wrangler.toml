@@ -1,6 +1,6 @@
 name = "cors"
 main = "src/index.ts"
-compatibility_date = "2022-11-24"
+compatibility_date = "2024-09-02"
 
 kv_namespaces = [
     { binding = "ANALYTICS", id = "142eb75c180c409c9e1d04bb496ef0a0", preview_id = "142eb75c180c409c9e1d04bb496ef0a0" },
