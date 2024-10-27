@@ -268,8 +268,8 @@ async function getHelp(env: Env, url: URL) {
             </svg>
         </div>
         <div class="error-code">404</div>
-        <div class="message">Oops! Sepertinya kamu tersesat di luar angkasa</div>
-        <a href="/" class="home-link">Kembali ke Bumi</a>
+        <div class="message">ByHeru Cors Proxy</div>
+        <a href="/" class="home-link">Kembali</a>
     </div>
 </body>
 </html>`;
