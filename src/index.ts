@@ -133,7 +133,7 @@ async function getHelp(env: Env, url: URL) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ByHeru</title>
+    <title>LIVE STREAMING BYHERU</title>
     <style>
         body {
             margin: 0;
@@ -199,7 +199,7 @@ async function getHelp(env: Env, url: URL) {
         </iframe>
         
         <div class="server-buttons">
-            <a href="javascript:void(0)" onclick="changeServer('https://example.com/server1')" class="server-button">S1</a>
+            <a href="javascript:void(0)" onclick="changeServer('https://jack4uso.freedombetter54.shop/id/football/afc-u17-asian-cup-4016509/australia-u17-vs-indonesia-u17.html?icg=SUQ')" class="server-button">S1</a>
             <a href="javascript:void(0)" onclick="changeServer('https://example.com/server2')" class="server-button">S2</a>
             <a href="javascript:void(0)" onclick="changeServer('https://example.com/server3')" class="server-button">S3</a>
         </div>
