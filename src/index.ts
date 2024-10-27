@@ -268,8 +268,8 @@ async function getHelp(env: Env, url: URL) {
             </svg>
         </div>
         <div class="error-code">404</div>
-        <div class="message">ByHeru Cors Proxy</div>
-        <a href="/" class="home-link">Kembali</a>
+        <div class="message">Halaman Tidak Ditemukan</div>
+        <a href="t.me/ByHeru" class="home-link">Telegram</a>
     </div>
 </body>
 </html>`;
