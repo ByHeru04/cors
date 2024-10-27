@@ -128,60 +128,106 @@ function fixUrl(url: string) {
 }
 
 async function getHelp(env: Env, url: URL) {
-  return `<html lang="en">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>
-   ByHeru🗿
-  </title>
-  <script src="https://cdn.tailwindcss.com">
-  </script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
- </head>
- <body class="bg-black text-white">
-  <div class="relative">
-   <div class="bg-gray-800 p-2">
-    <div class="flex items-center space-x-2">
-     <span>
-      LIVE STREAMING INDONESIA VS BAHRAIN 23:00 WIB
-     </span>
+  return `<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ByHeru</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            align-items: center;
+        }
+
+        .video-container {
+            width: 100%;
+            max-width: 100%;
+            height: 100vh;
+            position: relative;
+            background: #000;
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .server-buttons {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .server-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+        }
+
+        .server-button:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <iframe 
+            id="videoFrame"
+            src="about:blank"
+            allowfullscreen
+            allow="autoplay; fullscreen"
+            scrolling="no">
+        </iframe>
+        
+        <div class="server-buttons">
+            <a href="javascript:void(0)" onclick="changeServer('https://example.com/server1')" class="server-button">S1</a>
+            <a href="javascript:void(0)" onclick="changeServer('https://example.com/server2')" class="server-button">S2</a>
+            <a href="javascript:void(0)" onclick="changeServer('https://example.com/server3')" class="server-button">S3</a>
+        </div>
     </div>
-   </div>
-   <div class="relative">
-    <video id="videoPlayer" class="w-full" controls>
-     <source src="https://cors-proxy-test.byheru.workers.dev/https://racaster.infosport.web.id/memfs/e1455e60-78c9-4a6b-82f5-f9f752f7cb3b.m3u8" type="application/x-mpegURL"/>
-     Your browser does not support the video tag.
-    </video>
-    <span>
-    </span>
-     </div>
-    </div>
-   </div>
-   <div class="bg-gray-800 p-2 flex items-center justify-around">
-    <button class="bg-blue-500 text-white p-2 rounded" onclick="changeSource('https://test.byheru.workers.dev/ballbar_23640.m3u8')">
-     Server 1
-    </button>
-    <button class="bg-blue-500 text-white p-2 rounded" onclick="changeSource('https://test.byheru.workers.dev/ballbar_13270.m3u8')">
-     Server 2
-    </button>
-    <button class="bg-blue-500 text-white p-2 rounded" onclick="changeSource('https://test.byheru.workers.dev/ballbar_25440.m3u8')">
-     Server 3
-    </button>
-   </div>
-   <div class="bg-gray-800 p-2 mt-2 text-center">
-    <a href="https://t.me/ByHeru" target="_blank" class="text-blue-400 hover:text-blue-300">
-     Chat Telegram
-    </a>
-   </div>
-  <script>
-   function changeSource(source) {
-     const videoPlayer = document.getElementById('videoPlayer');
-     videoPlayer.src = source;
-     videoPlayer.play();
-   }
-  </script>
- </body>
+
+    <script>
+        function changeServer(url) {
+            document.getElementById('videoFrame').src = url;
+            // Optional: Hide server buttons after selection
+            document.querySelector('.server-buttons').style.display = 'none';
+        }
+
+        // Optional: Show server buttons when hovering near the center
+        document.addEventListener('mousemove', function(e) {
+            const buttons = document.querySelector('.server-buttons');
+            const centerY = window.innerHeight / 2;
+            const centerX = window.innerWidth / 2;
+            const distance = Math.sqrt(
+                Math.pow(e.clientY - centerY, 2) + 
+                Math.pow(e.clientX - centerX, 2)
+            );
+
+            if (distance < 200) { // Show buttons within 200px radius of center
+                buttons.style.display = 'flex';
+            }
+        });
+    </script>
+</body>
 </html>`;
 }
 
