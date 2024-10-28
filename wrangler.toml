@@ -2,6 +2,12 @@ name = "cors"
 main = "src/index.ts"
 compatibility_date = "2024-09-02"
 
+
+# wrangler.toml (wrangler v3.79.0^)
+[observability]
+enabled = true
+head_sampling_rate = 1
+
 kv_namespaces = [
     { binding = "ANALYTICS", id = "142eb75c180c409c9e1d04bb496ef0a0", preview_id = "142eb75c180c409c9e1d04bb496ef0a0" },
 ]
