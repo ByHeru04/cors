@@ -269,7 +269,7 @@ async function getHelp(env: Env, url: URL) {
         </div>
         <div class="error-code">404</div>
         <div class="message">Halaman Tidak Ditemukan</div>
-        <a href="t.me/ByHeru" class="home-link">Telegram</a>
+        <a href="t.me/ByHeru" class="home-link"> Chat Telegram</a>
     </div>
 </body>
 </html>`;
