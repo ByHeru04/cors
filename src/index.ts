@@ -201,7 +201,7 @@ async function getHelp(env: Env, url: URL) {
         <div class="server-buttons">
             <a href="javascript:void(0)" onclick="changeServer('https://www.livereacting.com/tools/hls-player-embed?url=https%3A%2F%2Fwax.emblazonn.com%2Flive%2Fv1%2FYuoe7XVgnfmScRa-55Ur72Am7DyafoBs6-VvjYmiG9xIm89noBjaFVcgDRO9SGK9%2Fmaster.m3u8')" class="server-button">SERVER 1</a>
             <a href="javascript:void(0)" onclick="changeServer('https://www.hlsplayer.net/embed?type=m3u8&src=https://i.kitescdnz.net/live/v1/Yuoe7XVgnfmScRa-55Ur72Am7DyafoBs6-VvjYmiG9xIm89noBjaFVcgDRO9SGK9/index.m3u8')" class="server-button">SERVER 2</a>
-            <a href="javascript:void(0)" onclick="changeServer('https://www.hlsplayer.net/embed?type=m3u8&src=https://wax.emblazonn.com/live/v1/RknzgN7FDh7aRIgASnESQzYuskSNgwYew0WnAG8eb8fVSWMlODu5eoSKveEWtEx+/master.m3u8')" class="server-button">SERVER 3</a>
+            <a href="javascript:void(0)" onclick="changeServer('https://www.livereacting.com/tools/hls-player-embed?url=https%3A%2F%2Fwax.emblazonn.com%2Flive%2Fv1%2FRknzgN7FDh7aRIgASnESQzYuskSNgwYew0WnAG8eb8fVSWMlODu5eoSKveEWtEx%2B%2Fmaster.m3u8')" class="server-button">SERVER 3</a>
         </div>
     </div>
 
