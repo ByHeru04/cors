@@ -199,7 +199,7 @@ async function getHelp(env: Env, url: URL) {
         </iframe>
         
         <div class="server-buttons">
-            <a href="javascript:void(0)" onclick="changeServer('https://wax.emblazonn.com/live/v1/Yuoe7XVgnfmScRa-55Ur72Am7DyafoBs6-VvjYmiG9xIm89noBjaFVcgDRO9SGK9/master.m3u8')" class="server-button">SERVER 1</a>
+            <a href="javascript:void(0)" onclick="changeServer('<iframe src="https://www.livereacting.com/tools/hls-player-embed?url=https%3A%2F%2Fwax.emblazonn.com%2Flive%2Fv1%2FYuoe7XVgnfmScRa-55Ur72Am7DyafoBs6-VvjYmiG9xIm89noBjaFVcgDRO9SGK9%2Fmaster.m3u8" width="640px" height="360px" frameborder="0" allowfullscreen style="max-width: 100%;"></iframe>')" class="server-button">SERVER 1</a>
             <a href="javascript:void(0)" onclick="changeServer('https://i.kitescdnz.net/live/v1/Yuoe7XVgnfmScRa-55Ur72Am7DyafoBs6-VvjYmiG9xIm89noBjaFVcgDRO9SGK9/index.m3u8')" class="server-button">SERVER 2</a>
         </div>
     </div>
