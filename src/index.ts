@@ -129,104 +129,148 @@ function fixUrl(url: string) {
 
 async function getHelp(env: Env, url: URL) {
   return `<!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LIVE STREAMING ALNASSR VS ALHILAL</title>
+    <title>404 - Page Not Found</title>
     <style>
         body {
             margin: 0;
             padding: 0;
-            background-color: #000;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            align-items: center;
-        }
-
-        .video-container {
-            width: 100%;
-            max-width: 100%;
+            background: #1a1a1a;
+            font-family: 'Arial', sans-serif;
             height: 100vh;
-            position: relative;
-            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            overflow: hidden;
         }
 
-        .video-container iframe {
+        .container {
+            text-align: center;
+            position: relative;
+        }
+
+        .error-code {
+            font-size: 150px;
+            font-weight: bold;
+            position: relative;
+            animation: glitch 1s linear infinite;
+            text-shadow: 2px 2px #ff0080;
+        }
+
+        .message {
+            font-size: 24px;
+            margin: 20px 0;
+            color: #ccc;
+        }
+
+        .home-link {
+            display: inline-block;
+            padding: 12px 24px;
+            background: #ff0080;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .home-link:hover {
+            transform: scale(1.1);
+        }
+
+        .astronaut {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            animation: float 6s ease-in-out infinite;
+            top: -120px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        @keyframes glitch {
+            2%, 64% {
+                transform: translate(2px, 0) skew(0deg);
+            }
+            4%, 60% {
+                transform: translate(-2px, 0) skew(0deg);
+            }
+            62% {
+                transform: translate(0, 0) skew(5deg);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(10deg);
+            }
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            border: none;
+            pointer-events: none;
         }
 
-        .server-buttons {
+        .star {
             position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            display: flex;
-            gap: 10px;
-            z-index: 1000;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 1s infinite;
         }
 
-        .server-button {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: rgba(255, 255, 255, 0.2);
-            color: white;
-            border: 2px solid white;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            font-family: Arial, sans-serif;
-        }
-
-        .server-button:hover {
-            background-color: rgba(255, 255, 255, 0.3);
-            transform: scale(1.05);
+        @keyframes twinkle {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.3;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="video-container">
-        <iframe 
-            id="videoFrame"
-            src="about:blank"
-            allowfullscreen
-            allow="autoplay; fullscreen"
-            scrolling="no">
-        </iframe>
-        
-        <div class="server-buttons">
-            <a href="javascript:void(0)" onclick="changeServer('https://www.livereacting.com/tools/hls-player-embed?url=https%3A%2F%2Fwax.emblazonn.com%2Flive%2Fv1%2FYuoe7XVgnfmScRa-55Ur72Am7DyafoBs6-VvjYmiG9xIm89noBjaFVcgDRO9SGK9%2Fmaster.m3u8')" class="server-button">SERVER 1</a>
-            <a href="javascript:void(0)" onclick="changeServer('https://www.hlsplayer.net/embed?type=m3u8&src=https://i.kitescdnz.net/live/v1/Yuoe7XVgnfmScRa-55Ur72Am7DyafoBs6-VvjYmiG9xIm89noBjaFVcgDRO9SGK9/index.m3u8')" class="server-button">SERVER 2</a>
-            <a href="javascript:void(0)" onclick="changeServer('https://www.livereacting.com/tools/hls-player-embed?url=https%3A%2F%2Fwax.emblazonn.com%2Flive%2Fv1%2FRknzgN7FDh7aRIgASnESQzYuskSNgwYew0WnAG8eb8fVSWMlODu5eoSKveEWtEx%2B%2Fmaster.m3u8')" class="server-button">SERVER 3</a>
-        </div>
+    <div class="stars">
+        <script>
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 1 + 's';
+                document.querySelector('.stars').appendChild(star);
+            }
+        </script>
     </div>
 
-    <script>
-        function changeServer(url) {
-            document.getElementById('videoFrame').src = url;
-            // Optional: Hide server buttons after selection
-            document.querySelector('.server-buttons').style.display = 'none';
-        }
-
-        // Optional: Show server buttons when hovering near the center
-        document.addEventListener('mousemove', function(e) {
-            const buttons = document.querySelector('.server-buttons');
-            const centerY = window.innerHeight / 2;
-            const centerX = window.innerWidth / 2;
-            const distance = Math.sqrt(
-                Math.pow(e.clientY - centerY, 2) + 
-                Math.pow(e.clientX - centerX, 2)
-            );
-
-            if (distance < 200) { // Show buttons within 200px radius of center
-                buttons.style.display = 'flex';
-            }
-        });
-    </script>
+    <div class="container">
+        <div class="astronaut">
+            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="35" fill="#ffffff"/>
+                <circle cx="50" cy="50" r="30" fill="#1a1a1a"/>
+                <circle cx="45" cy="45" r="5" fill="#ffffff"/>
+                <rect x="40" y="60" width="20" height="10" rx="5" fill="#ffffff"/>
+            </svg>
+        </div>
+        <div class="error-code">404</div>
+        <div class="message">Halaman Tidak Ditemukan</div>
+        <a href="t.me/ByHeru" class="home-link">Telegram</a>
+    </div>
 </body>
 </html>`;
 }
