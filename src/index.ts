@@ -202,8 +202,8 @@ async function getHelp(env: Env, url: URL) {
             <a href="javascript:void(0)" onclick="changeServer('https://www.hlsplayer.net/embed?type=m3u8&src=https://test.byheru.workers.dev/ballbar_30550.m3u8')" class="server-button">SERVER 1</a>
             <a href="javascript:void(0)" onclick="changeServer('https://www.hlsplayer.net/embed?type=m3u8&src=https://test.byheru.workers.dev/ballbar_28540.m3u8')" class="server-button">SERVER 2</a>
             <a href="javascript:void(0)" onclick="changeServer('https://www.hlsplayer.net/embed?type=m3u8&src=https://test.byheru.workers.dev/ballbar_11280.m3u8')" class="server-button">SERVER 3</a>
-            <a href="javascript:void(0)" onclick="changeServer('https://m3u8player.byheru.workers.dev/?url=https://test.byheru.workers.dev/ballbar_16510.m3u8')" class="server-button">AL NASSR VS AL AIN V1</a>
-            <a href="javascript:void(0)" onclick="changeServer('https://m3u8player.byheru.workers.dev/?url=https://test.byheru.workers.dev/ballbar_17170.m3u8')" class="server-button">AL NASSR VS AL AIN V2</a>
+            <a href="javascript:void(0)" onclick="changeServer('https://anym3u8player.com/tv/video-player.php?url=https://test.byheru.workers.dev/ballbar_16510.m3u8')" class="server-button">AL NASSR VS AL AIN V1</a>
+            <a href="javascript:void(0)" onclick="changeServer('https://anym3u8player.com/tv/p.php?url=https://test.byheru.workers.dev/ballbar_17170.m3u8')" class="server-button">AL NASSR VS AL AIN V2</a>
         </div>
     </div>
 
