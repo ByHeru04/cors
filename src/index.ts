@@ -129,106 +129,75 @@ function fixUrl(url: string) {
 
 async function getHelp(env: Env, url: URL) {
   return `<!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LIVE STREAMING REAL MADRID VS AC MILAN 03:00 WIB  |  t.me/ByHeru</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            background-color: #000;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            align-items: center;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Page Not Found</title>
+  <style>
+    /* Styling untuk halaman */
+    body {
+      background-color: #f2f2f2;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
 
-        .video-container {
-            width: 100%;
-            max-width: 100%;
-            height: 100vh;
-            position: relative;
-            background: #000;
-        }
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
 
-        .video-container iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
+    .error-message {
+      text-align: center;
+      margin-bottom: 30px;
+    }
 
-        .server-buttons {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            display: flex;
-            gap: 10px;
-            z-index: 1000;
-        }
+    .error-message h1 {
+      font-size: 80px;
+      color: #333;
+      margin: 0;
+    }
 
-        .server-button {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: rgba(255, 255, 255, 0.2);
-            color: white;
-            border: 2px solid white;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            font-family: Arial, sans-serif;
-        }
+    .error-message p {
+      font-size: 24px;
+      color: #666;
+      margin: 10px 0 0 0;
+    }
 
-        .server-button:hover {
-            background-color: rgba(255, 255, 255, 0.3);
-            transform: scale(1.05);
-        }
-    </style>
+    .button-container {
+      text-align: center;
+    }
+
+    .button-container a {
+      display: inline-block;
+      background-color: #4CAF50;
+      color: white;
+      text-decoration: none;
+      padding: 12px 24px;
+      border-radius: 4px;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    .button-container a:hover {
+      background-color: #45a049;
+    }
+  </style>
 </head>
 <body>
-    <div class="video-container">
-        <iframe 
-            id="videoFrame"
-            src="about:blank"
-            allowfullscreen
-            allow="autoplay; fullscreen"
-            scrolling="no">
-        </iframe>
-        
-        <div class="server-buttons">
-            <a href="javascript:void(0)" onclick="changeServer('https://www.hlsplayer.net/embed?type=m3u8&src=https://test.byheru.workers.dev/ballbar_30550.m3u8')" class="server-button">S1</a>
-            <a href="javascript:void(0)" onclick="changeServer('https://www.hlsplayer.net/embed?type=m3u8&src=https://test.byheru.workers.dev/ballbar_28540.m3u8')" class="server-button">S2</a>
-            <a href="javascript:void(0)" onclick="changeServer('https://www.hlsplayer.net/embed?type=m3u8&src=https://test.byheru.workers.dev/ballbar_11280.m3u8')" class="server-button">S3</a>
-            <a href="javascript:void(0)" onclick="changeServer('https://anym3u8player.com/tv/video-player.php?url=https://test.byheru.workers.dev/ballbar_16510.m3u8')" class="server-button">AL NASSR VS AL AIN</a>
-            <a href="javascript:void(0)" onclick="changeServer('https://anym3u8player.com/tv/p.php?url=https://test.byheru.workers.dev/ballbar_17170.m3u8')" class="server-button">AL NASSR VS AL AIN</a>
-        </div>
+  <div class="container">
+    <div class="error-message">
+      <h1>404</h1>
+      <p>Oops! Halaman yang Anda cari tidak dapat ditemukan.</p>
     </div>
-
-    <script>
-        function changeServer(url) {
-            document.getElementById('videoFrame').src = url;
-            // Optional: Hide server buttons after selection
-            document.querySelector('.server-buttons').style.display = 'none';
-        }
-
-        // Optional: Show server buttons when hovering near the center
-        document.addEventListener('mousemove', function(e) {
-            const buttons = document.querySelector('.server-buttons');
-            const centerY = window.innerHeight / 2;
-            const centerX = window.innerWidth / 2;
-            const distance = Math.sqrt(
-                Math.pow(e.clientY - centerY, 2) + 
-                Math.pow(e.clientX - centerX, 2)
-            );
-
-            if (distance < 200) { // Show buttons within 200px radius of center
-                buttons.style.display = 'flex';
-            }
-        });
-    </script>
+    <div class="button-container">
+      <a href="#">Kembali ke Halaman Utama</a>
+    </div>
+  </div>
 </body>
 </html>`;
 }
