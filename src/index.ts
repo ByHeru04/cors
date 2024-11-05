@@ -133,7 +133,7 @@ async function getHelp(env: Env, url: URL) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LIVE STREAMING REAL MADRID VS AC MILAN 03:00 WIB | Telegram : t.me/ByHeru</title>
+    <title>LIVE STREAMING REAL MADRID VS AC MILAN 03:00 WIB  |  t.me/ByHeru</title>
     <style>
         body {
             margin: 0;
