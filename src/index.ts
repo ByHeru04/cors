@@ -133,58 +133,53 @@ async function getHelp(env: Env, url: URL) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Error 404 - Page Not Found</title>
+  <title>404 - Page Not Found</title>
   <style>
-    /* CSS Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
 
-    /* Background Animation */
     body {
-      background: linear-gradient(45deg, #00b4db, #0083b0);
-      height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      background-color: #f0f0f0;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-family: 'Montserrat', sans-serif;
+      height: 100vh;
+      margin: 0;
       overflow: hidden;
     }
 
     .container {
       text-align: center;
-      color: white;
     }
 
     .error-code {
       font-size: 10rem;
-      font-weight: 700;
-      animation: bounce 2s infinite;
+      font-weight: bold;
+      color: #333;
+      animation: bounce 1s infinite;
     }
 
     .error-message {
       font-size: 2rem;
-      margin-bottom: 2rem;
+      color: #555;
+      margin-top: 2rem;
     }
 
-    .btn {
+    .link {
       display: inline-block;
-      background-color: white;
-      color: #0083b0;
+      background-color: #007bff;
+      color: #fff;
       text-decoration: none;
       padding: 1rem 2rem;
       border-radius: 5px;
-      font-size: 1.2rem;
-      transition: transform 0.3s;
+      margin-top: 2rem;
+      transition: background-color 0.3s ease;
     }
 
-    .btn:hover {
-      transform: translateY(-5px);
+    .link:hover {
+      background-color: #0056b3;
     }
 
-    /* Animation Keyframes */
     @keyframes bounce {
       0%, 100% {
         transform: translateY(0);
@@ -198,8 +193,8 @@ async function getHelp(env: Env, url: URL) {
 <body>
   <div class="container">
     <h1 class="error-code">404</h1>
-    <p class="error-message">Halaman Tidak Ditemukan.</p>
-    <a href="#" class="btn">Go Back Home</a>
+    <p class="error-message">Page not found.</p>
+    <a href="https://t.me/ByHeru" class="link">Telegram</a>
   </div>
 </body>
 </html>`;
