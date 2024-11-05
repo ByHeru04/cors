@@ -133,70 +133,73 @@ async function getHelp(env: Env, url: URL) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>404 - Page Not Found</title>
+  <title>Error 404 - Page Not Found</title>
   <style>
-    /* Styling untuk halaman */
-    body {
-      background-color: #f2f2f2;
-      font-family: Arial, sans-serif;
+    /* CSS Reset */
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Background Animation */
+    body {
+      background: linear-gradient(45deg, #00b4db, #0083b0);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Montserrat', sans-serif;
+      overflow: hidden;
     }
 
     .container {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+      text-align: center;
+      color: white;
+    }
+
+    .error-code {
+      font-size: 10rem;
+      font-weight: 700;
+      animation: bounce 2s infinite;
     }
 
     .error-message {
-      text-align: center;
-      margin-bottom: 30px;
+      font-size: 2rem;
+      margin-bottom: 2rem;
     }
 
-    .error-message h1 {
-      font-size: 80px;
-      color: #333;
-      margin: 0;
-    }
-
-    .error-message p {
-      font-size: 24px;
-      color: #666;
-      margin: 10px 0 0 0;
-    }
-
-    .button-container {
-      text-align: center;
-    }
-
-    .button-container a {
+    .btn {
       display: inline-block;
-      background-color: #4CAF50;
-      color: white;
+      background-color: white;
+      color: #0083b0;
       text-decoration: none;
-      padding: 12px 24px;
-      border-radius: 4px;
-      font-size: 16px;
-      transition: background-color 0.3s ease;
+      padding: 1rem 2rem;
+      border-radius: 5px;
+      font-size: 1.2rem;
+      transition: transform 0.3s;
     }
 
-    .button-container a:hover {
-      background-color: #45a049;
+    .btn:hover {
+      transform: translateY(-5px);
+    }
+
+    /* Animation Keyframes */
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="error-message">
-      <h1>404</h1>
-      <p>Oops! Halaman yang Anda cari tidak dapat ditemukan.</p>
-    </div>
-    <div class="button-container">
-      <a href="#">Kembali ke Halaman Utama</a>
-    </div>
+    <h1 class="error-code">404</h1>
+    <p class="error-message">Halaman Tidak Ditemukan.</p>
+    <a href="#" class="btn">Go Back Home</a>
   </div>
 </body>
 </html>`;
