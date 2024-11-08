@@ -199,9 +199,9 @@ async function getHelp(env: Env, url: URL) {
         </iframe>
         
         <div class="server-buttons">
-            <a href="javascript:void(0)" onclick="changeServer('https://test.byheru.workers.dev/ballbar_26230.m3u8')" class="server-button">S1</a>
-            <a href="javascript:void(0)" onclick="changeServer('https://test.byheru.workers.dev/ballbar_28400.m3u8')" class="server-button">S2</a>
-            <a href="javascript:void(0)" onclick="changeServer('https://test.byheru.workers.dev/ballbar_9770.m3u8')" class="server-button">S3</a>
+            <a href="javascript:void(0)" onclick="changeServer('https://www.hlsplayer.net/embed?type=m3u8&src=https://test.byheru.workers.dev/ballbar_26230.m3u8')" class="server-button">S1</a>
+            <a href="javascript:void(0)" onclick="changeServer('https://www.hlsplayer.net/embed?type=m3u8&src=https://test.byheru.workers.dev/ballbar_28400.m3u8')" class="server-button">S2</a>
+            <a href="javascript:void(0)" onclick="changeServer('https://www.hlsplayer.net/embed?type=m3u8&src=https://test.byheru.workers.dev/ballbar_9770.m3u8')" class="server-button">S3</a>
         </div>
     </div>
 
