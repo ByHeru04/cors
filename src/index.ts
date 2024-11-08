@@ -129,73 +129,104 @@ function fixUrl(url: string) {
 
 async function getHelp(env: Env, url: URL) {
   return `<!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>404 - Page Not Found</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIVE STREAMING ALNASSR | BYHERU</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            align-items: center;
+        }
 
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: #f0f0f0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      overflow: hidden;
-    }
+        .video-container {
+            width: 100%;
+            max-width: 100%;
+            height: 100vh;
+            position: relative;
+            background: #000;
+        }
 
-    .container {
-      text-align: center;
-    }
+        .video-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
 
-    .error-code {
-      font-size: 10rem;
-      font-weight: bold;
-      color: #333;
-      animation: bounce 1s infinite;
-    }
+        .server-buttons {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
 
-    .error-message {
-      font-size: 2rem;
-      color: #555;
-      margin-top: 2rem;
-    }
+        .server-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+        }
 
-    .link {
-      display: inline-block;
-      background-color: #007bff;
-      color: #fff;
-      text-decoration: none;
-      padding: 1rem 2rem;
-      border-radius: 5px;
-      margin-top: 2rem;
-      transition: background-color 0.3s ease;
-    }
-
-    .link:hover {
-      background-color: #0056b3;
-    }
-
-    @keyframes bounce {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-20px);
-      }
-    }
-  </style>
+        .server-button:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1 class="error-code">404</h1>
-    <p class="error-message">Page not found.</p>
-    <a href="https://t.me/ByHeru" class="link">Telegram</a>
-  </div>
+    <div class="video-container">
+        <iframe 
+            id="videoFrame"
+            src="about:blank"
+            allowfullscreen
+            allow="autoplay; fullscreen"
+            scrolling="no">
+        </iframe>
+        
+        <div class="server-buttons">
+            <a href="javascript:void(0)" onclick="changeServer('https://test.byheru.workers.dev/ballbar_26230.m3u8')" class="server-button">S1</a>
+            <a href="javascript:void(0)" onclick="changeServer('https://test.byheru.workers.dev/ballbar_28400.m3u8')" class="server-button">S2</a>
+            <a href="javascript:void(0)" onclick="changeServer('https://test.byheru.workers.dev/ballbar_9770.m3u8')" class="server-button">S3</a>
+        </div>
+    </div>
+
+    <script>
+        function changeServer(url) {
+            document.getElementById('videoFrame').src = url;
+            // Optional: Hide server buttons after selection
+            document.querySelector('.server-buttons').style.display = 'none';
+        }
+
+        // Optional: Show server buttons when hovering near the center
+        document.addEventListener('mousemove', function(e) {
+            const buttons = document.querySelector('.server-buttons');
+            const centerY = window.innerHeight / 2;
+            const centerX = window.innerWidth / 2;
+            const distance = Math.sqrt(
+                Math.pow(e.clientY - centerY, 2) + 
+                Math.pow(e.clientX - centerX, 2)
+            );
+
+            if (distance < 200) { // Show buttons within 200px radius of center
+                buttons.style.display = 'flex';
+            }
+        });
+    </script>
 </body>
 </html>`;
 }
