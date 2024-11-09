@@ -133,7 +133,7 @@ async function getHelp(env: Env, url: URL) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LIVE STREAMING ALNASSR | BYHERU</title>
+    <title>LIVE STREAMING REAL MADRID VS OSASUNA 20:00 WIB | @ByHeru</title>
     <style>
         body {
             margin: 0;
@@ -199,9 +199,14 @@ async function getHelp(env: Env, url: URL) {
         </iframe>
         
         <div class="server-buttons">
-            <a href="javascript:void(0)" onclick="changeServer('https://www.hlsplayer.net/embed?type=m3u8&src=https://test.byheru.workers.dev/ballbar_26230.m3u8')" class="server-button">S1</a>
-            <a href="javascript:void(0)" onclick="changeServer('https://www.hlsplayer.net/embed?type=m3u8&src=https://test.byheru.workers.dev/ballbar_28400.m3u8')" class="server-button">S2</a>
-            <a href="javascript:void(0)" onclick="changeServer('https://www.hlsplayer.net/embed?type=m3u8&src=https://test.byheru.workers.dev/ballbar_9770.m3u8')" class="server-button">S3</a>
+            <a href="javascript:void(0)" onclick="changeServer('https://www.hlsplayer.net/embed?type=m3u8&src=https://test.byheru.workers.dev/ballbar_19130.m3u8')" class="server-button">S1</a>
+            <a href="javascript:void(0)" onclick="changeServer('https://www.hlsplayer.net/embed?type=m3u8&src=https://test.byheru.workers.dev/ballbar_31890.m3u8')" class="server-button">S2</a>
+            <a href="javascript:void(0)" onclick="changeServer('https://www.hlsplayer.net/embed?type=m3u8&src=https://test.byheru.workers.dev/ballbar_33070.m3u8')" class="server-button">S3</a>
+            <a href="javascript:void(0)" onclick="changeServer('https://www.hlsplayer.net/embed?type=m3u8&src=https://test.byheru.workers.dev/ballbar_21250.m3u8')" class="server-button">S4</a>
+            <a href="javascript:void(0)" onclick="changeServer('https://www.hlsplayer.net/embed?type=m3u8&src=https://test.byheru.workers.dev/ballbar_16240.m3u8')" class="server-button">S5</a>
+            <a href="javascript:void(0)" onclick="changeServer('https://www.hlsplayer.net/embed?type=m3u8&src=https://test.byheru.workers.dev/ballbar_29830.m3u8')" class="server-button">S6</a>
+            <a href="javascript:void(0)" onclick="changeServer('https://www.hlsplayer.net/embed?type=m3u8&src=https://test.byheru.workers.dev/ballbar_37150.m3u8')" class="server-button">S7</a>
+            <a href="javascript:void(0)" onclick="changeServer('')" class="server-button">S8</a>
         </div>
     </div>
 
