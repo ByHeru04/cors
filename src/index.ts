@@ -206,7 +206,7 @@ async function getHelp(env: Env, url: URL) {
             <a href="javascript:void(0)" onclick="changeServer('https://www.hlsplayer.net/embed?type=m3u8&src=https://test.byheru.workers.dev/ballbar_16240.m3u8')" class="server-button">S5</a>
             <a href="javascript:void(0)" onclick="changeServer('https://www.hlsplayer.net/embed?type=m3u8&src=https://test.byheru.workers.dev/ballbar_29830.m3u8')" class="server-button">S6</a>
             <a href="javascript:void(0)" onclick="changeServer('https://www.hlsplayer.net/embed?type=m3u8&src=https://test.byheru.workers.dev/ballbar_37150.m3u8')" class="server-button">S7</a>
-            <a href="javascript:void(0)" onclick="changeServer('https://cors-test.byheru.workers.dev/https://zeemoontv-50.blogspot.com/?m=1')" class="server-button">S8 (MATIKAN ADBLOCK)</a>
+            <a href="javascript:void(0)" onclick="changeServer('https://cors-test.byheru.workers.dev/starballtvlt.blogspot.com/2024/11/maos.html?m=1')" class="server-button">S8</a>
         </div>
     </div>
 
