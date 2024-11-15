@@ -362,10 +362,6 @@ async function getHelp(env: Env, url: URL) {
                         <i class="fas fa-server"></i>
                         Server 3
                     </button>
-                    <button class="server-button" onclick="loadServer(4)" id="server4">
-                        <i class="fas fa-server"></i>
-                        Server 4
-                    </button>
                 </div>
                 
                 <div class="info-cards">
@@ -413,71 +409,64 @@ async function getHelp(env: Env, url: URL) {
     </div>
 
     <script>
+        // Initialize Shaka Player
         const video = document.getElementById('video');
         const player = new shaka.Player(video);
 
-        // Updated server configurations with 4 servers
+        // Server configurations with live stream URLs
         const servers = {
             1: {
-                manifest: 'https://d1u74t58xc4ugy.cloudfront.net/live/eds/rcti-sportstar2/sa_hls/rcti-sportstar2.m3u8?c',
-                type: 'hls'
+                manifest: 'https://d1u74t58xc4ugy.cloudfront.net/live/eds/rcti-sportstar2/sa_hls/rcti-sportstar2.m3u8?c'
             },
             2: {
                 manifest: 'https://cors-test.byheru.workers.dev/av-ch-cdn.mncnow.id/live/eds/MNCSports2-HD/sa_dash_vmx/MNCSports2-HD.mpd',
                 key: '843e228ab109e9aa6c4822ee4ad05d7d',
-                kid: '45fec91ce1f19b6b1f31d69dcfaaf6cd',
-                type: 'dash'
+                kid: '45fec91ce1f19b6b1f31d69dcfaaf6cd'
             },
             3: {
                 manifest: 'https://cors-test.byheru.workers.dev/av-ch-cdn.mncnow.id/live/eds/soccerchannel-test/sa_dash_vmx/soccerchannel-test.mpd',
                 key: '7ee9506b13480491d79b71c062ab5366',
-                kid: '4d38060bf41b3c29df0ec950ece6b5da',
-                type: 'dash'
-            },
-            4: {
-                manifest: 'https://cors-test.byheru.workers.dev/av-ch-cdn.mncnow.id/live/eds/Champions1/sa_dash_vmx/Champions1.mpd',
-                key: '8d116d3d3be1b9f44af7a35c8eff8bf2',
-                kid: '49eb824e9a31e5e3fa0e06a365d1d5da',
-                type: 'dash'
+                kid: '4d38060bf41b3c29df0ec950ece6b5da'
             }
         };
 
-        let startTime = Date.now();
+        let startTime = new Date().getTime();
         let currentServerButton = null;
-        let retryCount = 0;
-        const MAX_RETRIES = 3;
 
-        // Enhanced error handling function
-        function handleError(error) {
-            console.error('Streaming error:', error);
-            
-            if (retryCount < MAX_RETRIES) {
-                retryCount++;
-                console.log(`Retrying... Attempt ${retryCount} of ${MAX_RETRIES}`);
-                setTimeout(() => {
-                    loadServer(currentServerButton?.id?.replace('server', '') || 1);
-                }, 2000);
-            } else {
-                alert('Unable to load stream. Please try another server.');
-                retryCount = 0;
-            }
-        }
+        // Update uptime
+        setInterval(() => {
+            const now = new Date().getTime();
+            const seconds = Math.floor((now - startTime) / 1000);
+            const hours = Math.floor(seconds / 3600);
+            const minutes = Math.floor((seconds % 3600) / 60);
+            const remainingSeconds = seconds % 60;
+            document.getElementById('uptime').textContent = 
+                `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
+        }, 1000);
+
+        // Simulate viewer count and bitrate updates
+        setInterval(() => {
+            const viewers = Math.floor(Math.random() * 1000) + 500;
+            const bitrate = (Math.random() * 5 + 3).toFixed(1);
+            document.getElementById('viewerCount').textContent = viewers.toLocaleString();
+            document.getElementById('bitrate').textContent = `${bitrate} Mbps`;
+        }, 5000);
+
         // Configure DRM
-       function configureDrm(serverConfig) {
-            if (serverConfig.type === 'dash' && serverConfig.key && serverConfig.kid) {
-                const drmInfo = {
-                    keySystem: 'org.w3.clearkey',
-                    clearKeys: {
-                        [serverConfig.kid]: serverConfig.key
-                    }
-                };
-                
-                player.configure({
-                    drm: {
-                        clearKeys: drmInfo.clearKeys
-                    }
-                });
-            }
+        function configureDrm(serverConfig) {
+            const drmInfo = {
+                keySystem: 'org.w3.clearkey',
+                licenseServerUrl: serverConfig.license,
+                clearKeys: {
+                    [serverConfig.kid]: serverConfig.key
+                }
+            };
+            
+            player.configure({
+                drm: {
+                    clearKeys: drmInfo.clearKeys
+                }
+            });
         }
 
         // Load video from server
@@ -493,12 +482,11 @@ async function getHelp(env: Env, url: URL) {
                 const serverConfig = servers[serverNum];
                 document.getElementById('currentServer').textContent = `Server ${serverNum}`;
                 
-                // Configure DRM if needed
+                // Configure DRM for the server
                 configureDrm(serverConfig);
                 
-                // Load the manifest with proper error handling
+                // Load the manifest
                 await player.load(serverConfig.manifest);
-                retryCount = 0; // Reset retry count on successful load
                 
                 // Update video quality info
                 const tracks = player.getVariantTracks();
@@ -509,10 +497,13 @@ async function getHelp(env: Env, url: URL) {
                 // Start playback
                 video.play();
 
-                // Update stream health status
-                updateStreamHealth();
+                // Update stream health randomly
+                const healthStatuses = ['Excellent', 'Good', 'Fair'];
+                document.getElementById('streamHealth').textContent = 
+                    healthStatuses[Math.floor(Math.random() * healthStatuses.length)];
             } catch (error) {
-                handleError(error);
+                console.error('Error loading video:', error);
+                alert('Error loading video. Please try another server.');
             }
         }
 
