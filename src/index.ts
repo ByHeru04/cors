@@ -129,106 +129,398 @@ function fixUrl(url: string) {
 
 async function getHelp(env: Env, url: URL) {
   return `<!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LIVE STREAMING REAL MADRID VS OSASUNA | @ByHeru</title>
+    <title>ByHeru Live Events</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.5/shaka-player.compiled.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #3b82f6;
+            --secondary-color: #60a5fa;
+            --background-dark: #0f172a;
+            --card-background: #1e293b;
+            --text-light: #f8fafc;
+            --accent-color: #22c55e;
+        }
+
         body {
             margin: 0;
-            padding: 0;
-            background-color: #000;
-            display: flex;
-            flex-direction: column;
+            padding: 20px;
+            background: var(--background-dark);
+            color: var(--text-light);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .player-wrapper {
+            background: var(--card-background);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
             align-items: center;
+            margin-bottom: 20px;
         }
 
+        .title {
+            font-size: 28px;
+            color: var(--secondary-color);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .live-indicator {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .live-indicator .dot {
+            width: 8px;
+            height: 8px;
+            background-color: white;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+        
         .video-container {
-            width: 100%;
-            max-width: 100%;
-            height: 100vh;
             position: relative;
+            width: 100%;
+            padding-top: 56.25%;
             background: #000;
+            border-radius: 12px;
+            overflow: hidden;
         }
-
-        .video-container iframe {
+        
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            border: none;
+            border-radius: 12px;
+        }
+        
+        .controls-wrapper {
+            margin-top: 20px;
         }
 
         .server-buttons {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            display: flex;
-            gap: 10px;
-            z-index: 1000;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+            margin-bottom: 20px;
         }
-
+        
         .server-button {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: rgba(255, 255, 255, 0.2);
-            color: white;
-            border: 2px solid white;
-            border-radius: 5px;
+            background: var(--card-background);
+            color: var(--text-light);
+            border: 2px solid var(--primary-color);
+            padding: 12px 20px;
+            border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s ease;
-            text-decoration: none;
-            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .server-button:hover, .server-button.active {
+            background: var(--primary-color);
+            transform: translateY(-2px);
         }
 
-        .server-button:hover {
-            background-color: rgba(255, 255, 255, 0.3);
-            transform: scale(1.05);
+        .server-button i {
+            font-size: 16px;
+        }
+        
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .info-card {
+            background: #334155;
+            padding: 15px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-card i {
+            font-size: 20px;
+            color: var(--secondary-color);
+        }
+
+        .info-card-content {
+            flex-grow: 1;
+        }
+
+        .info-card-label {
+            font-size: 12px;
+            color: #94a3b8;
+            margin-bottom: 4px;
+        }
+
+        .info-card-value {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        @keyframes pulse {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .stream-status {
+            padding: 15px;
+            background: #334155;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .status-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #475569;
+        }
+
+        .status-row:last-child {
+            border-bottom: none;
+        }
+
+        .status-label {
+            color: #94a3b8;
+        }
+
+        .status-value {
+            font-weight: 500;
         }
     </style>
 </head>
 <body>
-    <div class="video-container">
-        <iframe 
-            id="videoFrame"
-            src="about:blank"
-            allowfullscreen
-            allow="autoplay; fullscreen"
-            scrolling="no">
-        </iframe>
-        
-        <div class="server-buttons">
-            <a href="javascript:void(0)" onclick="changeServer('https://www.hlsplayer.net/embed?type=m3u8&src=https://test.byheru.workers.dev/ballbar_19130.m3u8')" class="server-button">S1</a>
-            <a href="javascript:void(0)" onclick="changeServer('https://www.hlsplayer.net/embed?type=m3u8&src=https://test.byheru.workers.dev/ballbar_31890.m3u8')" class="server-button">S2</a>
-            <a href="javascript:void(0)" onclick="changeServer('https://www.hlsplayer.net/embed?type=m3u8&src=https://test.byheru.workers.dev/ballbar_33070.m3u8')" class="server-button">S3</a>
-            <a href="javascript:void(0)" onclick="changeServer('https://www.hlsplayer.net/embed?type=m3u8&src=https://test.byheru.workers.dev/ballbar_21250.m3u8')" class="server-button">S4</a>
-            <a href="javascript:void(0)" onclick="changeServer('https://www.hlsplayer.net/embed?type=m3u8&src=https://test.byheru.workers.dev/ballbar_16240.m3u8')" class="server-button">S5</a>
-            <a href="javascript:void(0)" onclick="changeServer('https://www.hlsplayer.net/embed?type=m3u8&src=https://test.byheru.workers.dev/ballbar_29830.m3u8')" class="server-button">S6</a>
-            <a href="javascript:void(0)" onclick="changeServer('https://www.hlsplayer.net/embed?type=m3u8&src=https://test.byheru.workers.dev/ballbar_37150.m3u8')" class="server-button">S7</a>
+    <div class="container">
+        <div class="player-wrapper">
+            <div class="header">
+                <h1 class="title">
+                    <i class="fas fa-broadcast-tower"></i>
+                    ByHeru Live
+                </h1>
+                <div class="live-indicator">
+                    <div class="dot"></div>
+                    LIVE
+                </div>
+            </div>
+            
+            <div class="video-container">
+                <video id="video" controls></video>
+            </div>
+            
+            <div class="controls-wrapper">
+                <div class="server-buttons">
+                    <button class="server-button" onclick="loadServer(1)" id="server1">
+                        <i class="fas fa-server"></i>
+                        Server 1
+                    </button>
+                    <button class="server-button" onclick="loadServer(2)" id="server2">
+                        <i class="fas fa-server"></i>
+                        Server 2
+                    </button>
+                    <button class="server-button" onclick="loadServer(3)" id="server3">
+                        <i class="fas fa-server"></i>
+                        Server 3
+                    </button>
+                </div>
+                
+                <div class="info-cards">
+                    <div class="info-card">
+                        <i class="fas fa-broadcast-tower"></i>
+                        <div class="info-card-content">
+                            <div class="info-card-label">Current Server</div>
+                            <div class="info-card-value" id="currentServer">-</div>
+                        </div>
+                    </div>
+                    
+                    <div class="info-card">
+                        <i class="fas fa-video"></i>
+                        <div class="info-card-content">
+                            <div class="info-card-label">Quality</div>
+                            <div class="info-card-value" id="videoQuality">-</div>
+                        </div>
+                    </div>
+
+                    <div class="info-card">
+                        <i class="fas fa-clock"></i>
+                        <div class="info-card-content">
+                            <div class="info-card-label">Uptime</div>
+                            <div class="info-card-value" id="uptime">00:00:00</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stream-status">
+                    <div class="status-row">
+                        <span class="status-label">Stream Health</span>
+                        <span class="status-value" id="streamHealth">Excellent</span>
+                    </div>
+                    <div class="status-row">
+                        <span class="status-label">Viewers</span>
+                        <span class="status-value" id="viewerCount">0</span>
+                    </div>
+                    <div class="status-row">
+                        <span class="status-label">Bitrate</span>
+                        <span class="status-value" id="bitrate">0 Mbps</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
-        function changeServer(url) {
-            document.getElementById('videoFrame').src = url;
-            // Optional: Hide server buttons after selection
-            document.querySelector('.server-buttons').style.display = 'none';
+        // Initialize Shaka Player
+        const video = document.getElementById('video');
+        const player = new shaka.Player(video);
+
+        // Server configurations with live stream URLs
+        const servers = {
+            1: {
+                manifest: 'https://cors-test.byheru.workers.dev/output.unregister.xyz/euro/inavsjapan2024_uhd/index.m3u8'
+            },
+            2: {
+                manifest: 'https://cors-test.byheru.workers.dev/av-ch-cdn.mncnow.id/live/eds/MNCSports2-HD/sa_dash_vmx/MNCSports2-HD.mpd',
+                key: '843e228ab109e9aa6c4822ee4ad05d7d',
+                kid: '45fec91ce1f19b6b1f31d69dcfaaf6cd'
+            },
+            3: {
+                manifest: 'https://cors-test.byheru.workers.dev/av-ch-cdn.mncnow.id/live/eds/soccerchannel-test/sa_dash_vmx/soccerchannel-test.mpd',
+                key: '7ee9506b13480491d79b71c062ab5366',
+                kid: '4d38060bf41b3c29df0ec950ece6b5da'
+            }
+        };
+
+        let startTime = Date.now();
+        let currentServerButton = null;
+
+        // Update uptime
+        setInterval(() => {
+            const seconds = Math.floor((Date.now() - startTime) / 1000);
+            const hours = Math.floor(seconds / 3600);
+            const minutes = Math.floor((seconds % 3600) / 60);
+            const remainingSeconds = seconds % 60;
+            document.getElementById('uptime').textContent = 
+                `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
+        }, 1000);
+
+        // Simulate viewer count and bitrate updates
+        setInterval(() => {
+            const viewers = Math.floor(Math.random() * 1000) + 500;
+            const bitrate = (Math.random() * 5 + 3).toFixed(1);
+            document.getElementById('viewerCount').textContent = viewers.toLocaleString();
+            document.getElementById('bitrate').textContent = `${bitrate} Mbps`;
+        }, 5000);
+
+        // Configure DRM
+        function configureDrm(serverConfig) {
+            const drmInfo = {
+                keySystem: 'org.w3.clearkey',
+                licenseServerUrl: serverConfig.license,
+                clearKeys: {
+                    [serverConfig.kid]: serverConfig.key
+                }
+            };
+            
+            player.configure({
+                drm: {
+                    clearKeys: drmInfo.clearKeys
+                }
+            });
         }
 
-        // Optional: Show server buttons when hovering near the center
-        document.addEventListener('mousemove', function(e) {
-            const buttons = document.querySelector('.server-buttons');
-            const centerY = window.innerHeight / 2;
-            const centerX = window.innerWidth / 2;
-            const distance = Math.sqrt(
-                Math.pow(e.clientY - centerY, 2) + 
-                Math.pow(e.clientX - centerX, 2)
-            );
+        // Load video from server
+        async function loadServer(serverNum) {
+            try {
+                // Update active server button
+                if (currentServerButton) {
+                    currentServerButton.classList.remove('active');
+                }
+                currentServerButton = document.getElementById(`server${serverNum}`);
+                currentServerButton.classList.add('active');
 
-            if (distance < 200) { // Show buttons within 200px radius of center
-                buttons.style.display = 'flex';
+                const serverConfig = servers[serverNum];
+                document.getElementById('currentServer').textContent = `Server ${serverNum}`;
+                
+                // Configure DRM for the server
+                configureDrm(serverConfig);
+                
+                // Load the manifest
+                await player.load(serverConfig.manifest);
+                
+                // Update video quality info
+                const tracks = player.getVariantTracks();
+                const highestQuality = tracks.reduce((max, track) => 
+                    Math.max(max, track.height), 0);
+                document.getElementById('videoQuality').textContent = `${highestQuality}p`;
+                
+                // Start playback
+                video.play();
+
+                // Update stream health randomly
+                const healthStatuses = ['Excellent', 'Good', 'Fair'];
+                document.getElementById('streamHealth').textContent = 
+                    healthStatuses[Math.floor(Math.random() * healthStatuses.length)];
+            } catch (error) {
+                console.error('Error loading video:', error);
+                alert('Error loading video. Please try another server.');
             }
+        }
+
+        // Initialize player when document is ready
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                await shaka.Player.isBrowserSupported();
+                // Initialize with first server
+                loadServer(1);
+            } catch (error) {
+                console.error('Browser not supported:', error);
+                alert('Your browser is not supported. Please use a modern browser.');
+            }
+        });
+
+        // Error handling
+        player.addEventListener('error', (event) => {
+            console.error('Player error:', event.detail);
         });
     </script>
 </body>
