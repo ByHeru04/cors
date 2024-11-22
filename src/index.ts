@@ -550,7 +550,8 @@ async function getHelp(env: Env, url: URL) {
         });
     </script>
 </body>
-</html>`;
+</html>
+`;
 }
 
 async function increment(env: Env) {
