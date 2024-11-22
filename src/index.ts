@@ -129,7 +129,7 @@ function fixUrl(url: string) {
 
 async function getHelp(env: Env, url: URL) {
   return `<!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -550,8 +550,7 @@ async function getHelp(env: Env, url: URL) {
         });
     </script>
 </body>
-</html>
-`;
+</html>`;
 }
 
 async function increment(env: Env) {
