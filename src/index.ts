@@ -188,8 +188,8 @@ async function getHelp(env: Env, url: URL) {
   <body>
     <h1>Cors Proxy ByHeru</h1>
     <form id="proxy-form">
-      <input type="text" id="url" name="url" placeholder="https://example.com" required />
-      <button type="submit">SCARCH</button>
+      <input type="text" id="url" name="url" placeholder="https://t.me/ByHeru" required />
+      <button type="submit">SEARCH</button>
     </form>
     <script>
       const form = document.getElementById('proxy-form');
